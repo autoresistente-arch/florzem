@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>FLORZEM — Glassart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --g1: #e8dcfb;
+        --g2: #ffe2d2;
+        --g3: #d3f2e5;
+        --ink: #2a2340;
+        --muted: #6a6382;
+        --card: rgba(241, 202, 202, 0.62);
+        --line: rgba(42, 35, 64, 0.12);
+        --accent: #6a45e0;
+        --accent-ink: #fff;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --g1: #241a3d;
+          --g2: #33202a;
+          --g3: #13302b;
+          --ink: #f1ecfb;
+          --muted: #b4abcc;
+          --card: rgba(255, 255, 255, 0.07);
+          --line: rgba(255, 255, 255, 0.14);
+          --accent: #a68bff;
+          --accent-ink: #1b1230;
+        }
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --g1: #241a3d;
+        --g2: #33202a;
+        --g3: #13302b;
+        --ink: #f1ecfb;
+        --muted: #b4abcc;
+        --card: rgba(255, 255, 255, 0.07);
+        --line: rgba(255, 255, 255, 0.14);
+        --accent: #a68bff;
+        --accent-ink: #1b1230;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font:
+          400 16px/1.6 "DM Sans",
+          system-ui,
+          sans-serif;
+        color: var(--ink);
+        background: var(--g1);
+        background: linear-gradient(
+            135deg,
+            var(--g1) 0%,
+            var(--g2) 52%,
+            var(--g3) 100%
+          )
+          fixed;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Bricolage Grotesque", "DM Sans", sans-serif;
+        line-height: 1.1;
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 5;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: var(--card);
+        border-bottom: 1px solid var(--line);
+      }
+      .bar {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        min-height: 64px;
+        flex-wrap: wrap;
+        padding-block: 8px;
+      }
+      .logo {
+        font:
+          800 24px "Bricolage Grotesque",
+          sans-serif;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        margin-right: auto;
+      }
+      nav {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 99px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      nav a:hover {
+        color: var(--ink);
+      }
+      nav a.on {
+        background: var(--ink);
+        color: var(--g1);
+      }
+      .cartbtn {
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--ink);
+        font:
+          500 15px "DM Sans",
+          sans-serif;
+        padding: 8px 14px;
+        border-radius: 99px;
+        cursor: pointer;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 2px;
+      }
+      section.page {
+        display: none;
+        padding: 56px 0 72px;
+      }
+      section.page.on {
+        display: block;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: clamp(40px, 7vw, 76px);
+        font-weight: 800;
+      }
+      .hero p {
+        font-size: 18px;
+        color: var(--muted);
+        max-width: 46ch;
+        margin: 20px 0 28px;
+      }
+      .btn {
+        display: inline-block;
+        border: 0;
+        cursor: pointer;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font:
+          700 16px "DM Sans",
+          sans-serif;
+        padding: 13px 26px;
+        border-radius: 99px;
+        text-decoration: none;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+      .hero-art {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 36px;
+        padding: 28px;
+        aspect-ratio: 1/1;
+        display: grid;
+        place-items: center;
+      }
+      .sec-title {
+        font-size: clamp(30px, 5vw, 48px);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .sub {
+        color: var(--muted);
+        max-width: 56ch;
+        margin: 0 0 32px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 18px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .card .art {
+        border-radius: 16px;
+        aspect-ratio: 4/3;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.35);
+      }
+      .card h3 {
+        font-size: 20px;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14.5px;
+        flex: 1;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .price {
+        font:
+          700 20px "Bricolage Grotesque",
+          sans-serif;
+      }
+      .card .btn {
+        padding: 9px 18px;
+        font-size: 14px;
+      }
+      .team .avatar {
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font:
+          800 28px "Bricolage Grotesque",
+          sans-serif;
+        color: #2a2340;
+      }
+      .role {
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-bottom: 44px;
+      }
+      .about p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .formbox {
+        max-width: 460px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 28px;
+      }
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+      label {
+        display: block;
+        font-weight: 500;
+        font-size: 14px;
+        margin: 14px 0 6px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        font:
+          400 16px "DM Sans",
+          sans-serif;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px 14px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) input,
+        :root:not([data-theme="light"]) textarea {
+          background: rgba(255, 255, 255, 0.06);
+        }
+      }
+      textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+      .msg {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        display: none;
+      }
+      .msg.show {
+        display: block;
+      }
+      .contact-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 14px;
+      }
+      .contact-list b {
+        display: block;
+      }
+      .drawer {
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: min(380px, 100%);
+        background: var(--g1);
+        border-left: 1px solid var(--line);
+        padding: calc(24px + env(safe-area-inset-top, 0px)) 24px 24px;
+        transform: translateX(100%);
+        transition: transform 0.25s;
+        z-index: 20;
+        overflow: auto;
+      }
+      .drawer.open {
+        transform: none;
+      }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .item button {
+        background: none;
+        border: 0;
+        color: var(--muted);
+        cursor: pointer;
+        font: inherit;
+        text-decoration: underline;
+      }
+      .tl {
+        list-style: none;
+        margin: 32px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 14px;
+        max-width: 720px;
+      }
+      .tl li {
+        display: grid;
+        grid-template-columns: 76px 1fr;
+        gap: 16px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 16px 20px;
+      }
+      .tl .yr {
+        font:
+          800 22px "Bricolage Grotesque",
+          sans-serif;
+        color: var(--accent);
+      }
+      .tl p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .prose {
+        max-width: 720px;
+        display: grid;
+        gap: 14px;
+      }
+      .prose h3 {
+        font-size: 22px;
+        margin-top: 18px;
+      }
+      .prose p,
+      .prose li {
+        color: var(--muted);
+        margin: 0;
+      }
+      .prose ul {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 6px;
+      }
+      .upd {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      [hidden] {
+        display: none !important;
+      }
+      select {
+        width: 100%;
+        font:
+          400 16px "DM Sans",
+          sans-serif;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px 14px;
+      }
+      .opt {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px 14px;
+        margin: 8px 0;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+      }
+      .opt input {
+        width: auto;
+      }
+      #pform h3,
+      #pwrap aside h3 {
+        margin-bottom: 6px;
+      }
+      footer a {
+        margin: 0 8px;
+      }
+      footer {
+        padding: 28px 0 40px;
+        color: var(--muted);
+        font-size: 14px;
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .hero,
+        .about,
+        .split {
+          grid-template-columns: 1fr;
+        }
+        .hero-art {
+          aspect-ratio: auto;
+          padding: 16px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+
+     .historia-card {
+   background:
+    linear-gradient(
+      rgba(35, 25, 38, 0.82),
+      rgba(35, 25, 38, 0.88)
+    ),
+    url("assets/img/fogoNoVidro.png") center / cover no-repeat;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 20px;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap bar">
+        <a class="logo" href="#inicio">FLORZEM</a>
+        <nav aria-label="Principal">
+          <a href="#inicio" data-p="inicio">Início</a>
+          <a href="#loja" data-p="loja">Loja</a>
+          <a href="#historia" data-p="historia">História</a>
+          <a href="#equipe" data-p="equipe">Equipe</a>
+          <a href="#contato" data-p="contato">Contato</a>
+          <a href="#login" data-p="login">Entrar</a>
+        </nav>
+        <button class="cartbtn" id="cartbtn">
+          Sacola (<span id="cnt">0</span>)
+        </button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page" id="inicio">
+        <div class="hero">
+          <div>
+            <h2>Do fogo nasce a forma.</h2>
+            <p>Da cultura nasce a identidade.</p>
+            <h2>Feito a mão.</h2>
+            <p>Florzem é glass art em movimento.</p>
+            <h2>Vidro borossilicato.</h2>
+            <p>Produção Autoral</p>
+            <a class="btn" href="#loja">Ver a loja</a>
+            <a class="btn ghost" href="#equipe">Conhecer a equipe</a>
+          </div>
+          <div class="hero-art" id="heroart">
+            <img src="assets/img/FlorZem.png" width="445" height="405" />
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="loja">
+        <h2 class="sec-title">Loja</h2>
+        <p class="sub">
+          Piteiras de vidro borossilicato feitas à mão. Como são artesanais, o
+          desenho pode variar um pouco de uma peça para outra.
+        </p>
+        <div class="grid" id="prods"></div>
+      </section>
+
+      <section class="page" id="equipe">
+        <h2 class="sec-title">Quem faz a FLORZEM</h2>
+        <p class="sub">
+          Um ateliê pequeno, com gente que gosta de vidro e de bem-feito.
+        </p>
+        <div class="about">
+          <p>
+            A FLORZEM começou numa bancada com um maçarico e muita vontade de
+            aprender. Hoje reunimos vidreiros, designers e atendimento no mesmo
+            ateliê.
+          </p>
+          <p>
+            Trabalhamos com vidro borossilicato, testamos cada peça antes de
+            embalar e enviamos para todo o Brasil.
+          </p>
+        </div>
+        <div class="grid team" id="team"></div>
+      </section>
+
+      <section class="page historia-card" id="historia" style="padding: 10px 0 72px; !important">
+        <h2 class="sec-title" style="margin-left: 20px;">Nossa história</h2>
+        <p class="sub" style="margin-left: 20px;">
+          A FLORZEM nasceu do gosto por vidro e por peças que carregam a marca
+          de quem as fez.
+        </p>
+        <ul class="tl" style="margin-left: 20px;">
+          <li>
+            <span class="yr">2022</span>
+            <p>
+              A Florzem nasceu em 2022, entre a música, a arte e a cultura das
+              raves. Foi no universo do trance — marcado pela liberdade de
+              expressão, pelas cores, formas e experiências — que começou a se
+              construir a identidade que hoje ganha forma através do vidro.
+              Direto de Florianópolis (SC), o ateliê transforma diferentes tipos
+              de vidro — do borossilicato a vidros de origem alemã, americana e
+              chinesa — em peças produzidas artesanalmente, explorando técnicas,
+              materiais e possibilidades distintas dentro do glass art. Entre
+              piteiras, personagens, miniaturas, acessórios e peças únicas, o
+              trabalho da Florzem transita entre arte e funcionalidade. Cada
+              criação carrega as marcas do processo manual e de um universo
+              visual próprio, onde experimentação, técnica e personalidade se
+              encontram. Mais do que produzir objetos, a Florzem busca
+              fortalecer a cultura do vidro no Brasil, aproximando o glass art
+              de novas pessoas e ressignificando objetos funcionais através da
+              criação artística. Nas piteiras e peças reutilizáveis, essa
+              proposta também se conecta à redução de danos e a formas mais
+              conscientes de consumo. Conheça agora mais da Florzem!
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="page" id="privacidade">
+        <h2 class="sec-title">Privacidade</h2>
+        <p class="upd">Atualizada em 15 de outubro de 2026</p>
+        <div class="prose">
+          <p>
+            Respeitamos a sua privacidade e tratamos seus dados conforme a Lei
+            Geral de Proteção de Dados (LGPD, Lei 13.709/2018).
+          </p>
+          <h3>Quais dados coletamos</h3>
+          <ul>
+            <li>
+              Nome, e-mail e telefone, quando você entra em contato ou cria uma
+              conta.
+            </li>
+            <li>Endereço de entrega e dados do pedido, quando você compra.</li>
+            <li>
+              Dados básicos de navegação, como tipo de dispositivo e páginas
+              visitadas.
+            </li>
+          </ul>
+          <h3>Para que usamos</h3>
+          <ul>
+            <li>Processar e entregar seus pedidos.</li>
+            <li>Responder suas mensagens e dar suporte.</li>
+            <li>Melhorar o site e a loja.</li>
+          </ul>
+          <h3>Com quem compartilhamos</h3>
+          <p>
+            Apenas com quem for necessário para concluir sua compra, como
+            transportadoras e meios de pagamento. Não vendemos seus dados.
+          </p>
+          <h3>Venda para maiores de 18 anos</h3>
+          <p>
+            Nossos produtos são destinados a maiores de 18 anos. Não coletamos
+            dados de menores de propósito.
+          </p>
+          <h3>Seus direitos</h3>
+          <p>
+            Você pode pedir acesso, correção ou exclusão dos seus dados, ou
+            retirar o consentimento, a qualquer momento. Escreva para
+            privacidade@florzem.com.br e respondemos em até 15 dias.
+          </p>
+          <h3>Cookies</h3>
+          <p>
+            Usamos apenas cookies necessários para o funcionamento do site, como
+            a sacola de compras.
+          </p>
+        </div>
+      </section>
+
+      <section class="page" id="pagamento">
+        <h2 class="sec-title">Finalizar pedido</h2>
+        <p class="sub">
+          Informe a entrega e escolha como pagar. Ambiente de demonstração:
+          nenhum pagamento real é processado e nenhum dado é enviado.
+        </p>
+        <div class="split" id="pwrap">
+          <form class="formbox" id="pform" novalidate style="max-width: none">
+            <h3>Seus dados</h3>
+            <label for="pn">Nome completo</label
+            ><input id="pn" autocomplete="name" /> <label for="pe">E-mail</label
+            ><input id="pe" type="email" autocomplete="email" />
+            <h3 style="margin-top: 26px">Entrega</h3>
+            <label for="pcep">CEP</label
+            ><input id="pcep" inputmode="numeric" autocomplete="postal-code" />
+            <label for="pend">Endereço</label
+            ><input id="pend" autocomplete="address-line1" />
+            <label for="pnum">Número e complemento</label><input id="pnum" />
+            <label for="pcid">Cidade</label
+            ><input id="pcid" autocomplete="address-level2" />
+            <label for="puf">Estado (UF)</label
+            ><input id="puf" maxlength="2" autocomplete="address-level1" />
+            <label class="opt"
+              ><input type="radio" name="ship" value="19.9" checked /> Padrão, 5
+              a 8 dias úteis — R$ 19,90</label
+            >
+            <label class="opt"
+              ><input type="radio" name="ship" value="34.9" /> Expresso, 2 a 3
+              dias úteis — R$ 34,90</label
+            >
+            <p class="upd">Frete grátis em compras a partir de R$ 200,00.</p>
+            <h3 style="margin-top: 26px">Pagamento</h3>
+            <label class="opt"
+              ><input type="radio" name="pay" value="pix" checked /> Pix (5% de
+              desconto)</label
+            >
+            <label class="opt"
+              ><input type="radio" name="pay" value="card" /> Cartão de
+              crédito</label
+            >
+            <label class="opt"
+              ><input type="radio" name="pay" value="boleto" /> Boleto
+              bancário</label
+            >
+            <div class="paybox" data-for="pix">
+              <p class="upd">
+                O código Pix aparece depois que você confirmar o pedido.
+              </p>
+            </div>
+            <div class="paybox" data-for="card" hidden>
+              <label for="ch">Nome no cartão</label
+              ><input id="ch" autocomplete="cc-name" />
+              <label for="cc">Número do cartão</label
+              ><input id="cc" inputmode="numeric" autocomplete="cc-number" />
+              <label for="cv">Validade (MM/AA)</label
+              ><input id="cv" placeholder="MM/AA" autocomplete="cc-exp" />
+              <label for="cs">CVV</label
+              ><input
+                id="cs"
+                inputmode="numeric"
+                maxlength="4"
+                autocomplete="cc-csc"
+              />
+              <label for="parc">Parcelas</label
+              ><select id="parc"></select>
+            </div>
+            <div class="paybox" data-for="boleto" hidden>
+              <p class="upd">
+                O boleto vence em 3 dias e o pedido é enviado depois da
+                compensação.
+              </p>
+            </div>
+            <label class="opt" style="margin-top: 20px"
+              ><input type="checkbox" id="pidade" /> Tenho 18 anos ou mais e li
+              a&nbsp;<a href="#privacidade">política de privacidade</a>.</label
+            >
+            <p class="msg" id="pmsg" role="status"></p>
+            <p><button class="btn" type="submit">Confirmar pedido</button></p>
+          </form>
+          <aside class="formbox" style="max-width: none">
+            <h3>Resumo</h3>
+            <div id="ckitems"></div>
+            <div id="ckrows"></div>
+            <p class="row">
+              <b>Total</b><span class="price" id="cktot">R$ 0,00</span>
+            </p>
+          </aside>
+        </div>
+        <div
+          class="formbox"
+          id="pdone"
+          hidden
+          style="max-width: 560px"
+          role="status"
+        ></div>
+      </section>
+
+      <section class="page" id="contato">
+        <h2 class="sec-title">Contato</h2>
+        <p class="sub">
+          Dúvidas, encomendas personalizadas ou parcerias: escreva para nós e
+          respondemos em até 2 dias úteis.
+        </p>
+        <div class="split">
+          <form class="formbox" id="cform" novalidate>
+            <label for="cn">Nome</label
+            ><input id="cn" required autocomplete="name" />
+            <label for="ce">E-mail</label
+            ><input id="ce" type="email" required autocomplete="email" />
+            <label for="cm">Mensagem</label
+            ><textarea id="cm" required></textarea>
+            <p class="msg" id="cmsg" role="status"></p>
+            <p><button class="btn" type="submit">Enviar mensagem</button></p>
+          </form>
+          <ul class="contact-list">
+            <li><b>E-mail</b>contato@florzem.com.br</li>
+            <li><b>Instagram</b>@flor__zem</li>
+            <li><b>WhatsApp</b>(48) 9128-5992</li>
+            <li><b>Ateliê</b>Florianópolis, SC — visitas com hora marcada</li>
+            <li><b>Atendimento</b>Segunda a sexta, das 9h às 17h</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page" id="login">
+        <h2 class="sec-title">Entrar</h2>
+        <p class="sub">Acesse sua conta para acompanhar pedidos.</p>
+        <form class="formbox" id="lform" novalidate>
+          <label for="le">E-mail</label
+          ><input id="le" type="email" required autocomplete="email" />
+          <label for="lp">Senha</label
+          ><input
+            id="lp"
+            type="password"
+            required
+            autocomplete="current-password"
+          />
+          <p class="msg" id="lmsg" role="status"></p>
+          <p><button class="btn" type="submit">Entrar</button></p>
+          <p style="font-size: 14px; color: var(--muted)">
+            Ainda não tem conta? Crie uma no primeiro pedido.
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <a href="#historia">Nossa história</a
+      ><a href="#privacidade">Privacidade</a><br />© 2026 FLORZEM — Piteiras de
+      vidro artesanais
+    </footer>
+
+    <aside class="drawer" id="drawer" aria-label="Sacola">
+      <div class="row">
+        <h3>Sua sacola</h3>
+        <button class="cartbtn" id="close">Fechar</button>
+      </div>
+      <div id="items"></div>
+      <p class="row">
+        <b>Total</b><span class="price" id="total">R$ 0,00</span>
+      </p>
+      <button class="btn" id="checkout" style="width: 100%">
+        Finalizar pedido
+      </button>
+      <p class="msg" id="kmsg" role="status"></p>
+    </aside>
+
+    <script>
+      const $ = (s) => document.querySelector(s);
+      const brl = (n) =>
+        n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+      function pit(c1, c2, id) {
+        return `<svg viewBox="0 0 240 150" width="100%" style="max-width:260px" aria-hidden="true">
+  <defs><linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>
+  <g transform="rotate(-18 120 75)">
+    <rect x="20" y="62" width="200" height="26" rx="13" fill="url(#g${id})" opacity=".92"/>
+    <rect x="20" y="66" width="200" height="6" rx="3" fill="#fff" opacity=".45"/>
+    <rect x="150" y="58" width="12" height="34" rx="6" fill="${c2}"/>
+    <rect x="28" y="70" width="40" height="10" rx="5" fill="#fff" opacity=".25"/>
+  </g></svg>`;
+      }
+      const prods = [
+        {
+          n: "Lilás",
+          d: "Vidro leitoso em tom lilás, acabamento fosco.",
+          p: 49.9,
+          a: "#b9a2f5",
+          b: "#7d5bdc",
+        },
+        {
+          n: "Pêssego",
+          d: "Degradê quente do laranja suave ao rosa.",
+          p: 54.9,
+          a: "#ffc7a6",
+          b: "#f08a8a",
+        },
+        {
+          n: "Menta",
+          d: "Verde-água translúcido com bolhas de ar.",
+          p: 52.9,
+          a: "#b8ecd6",
+          b: "#4fc4a0",
+        },
+        {
+          n: "Âmbar",
+          d: "Vidro âmbar com fio espiral dourado.",
+          p: 59.9,
+          a: "#f7c968",
+          b: "#c47a1c",
+        },
+        {
+          n: "Oceano",
+          d: "Azul profundo com reflexos turquesa.",
+          p: 57.9,
+          a: "#8fd3f4",
+          b: "#2f6fd0",
+        },
+        {
+          n: "Florzem Edição",
+          d: "Peça única com três cores fundidas à mão.",
+          p: 79.9,
+          a: "#f5a6d8",
+          b: "#6fd0c0",
+        },
+      ];
+      const team = [
+        {
+          n: "Paulo Ferraz",
+          r: "Fundador e mestre vidreiro",
+          t: "Sopra vidro há 12 anos e desenha todas as peças da coleção.",
+          c: "#d9c8fb",
+        },
+        {
+          n: "Izabela Luana",
+          r: "Vidreira",
+          t: "Sopradora de vidros, cuida do acabamento e dos testes de resistência.",
+          c: "#ffd5bf",
+        },
+        {
+          n: "Bida",
+          r: "Design e cores e vidreira",
+          t: "Escolhe as paletas e cria as edições limitadas.",
+          c: "#c4efdc",
+        },
+        {
+          n: "Cauê",
+          r: "Atendimento e envios",
+          t: "Responde suas mensagens e embala cada pedido com cuidado.",
+          c: "#f9e1a8",
+        },
+      ];
+      $("#prods").innerHTML = prods
+        .map(
+          (x, i) =>
+            `<article class="card"><div class="art">${pit(x.a, x.b, i)}</div><h3>${x.n}</h3><p>${x.d}</p><div class="row"><span class="price">${brl(x.p)}</span><button class="btn" data-add="${i}">Adicionar</button></div></article>`,
+        )
+        .join("");
+      $("#team").innerHTML = team
+        .map(
+          (x) =>
+            `<article class="card"><div class="avatar" style="background:${x.c}">${x.n
+              .split(" ")
+              .map((w) => w[0])
+              .join(
+                "",
+              )}</div><h3>${x.n}</h3><span class="role">${x.r}</span><p>${x.t}</p></article>`,
+        )
+        .join("");
+
+      // navegação
+      function route() {
+        let h = (location.hash || "#inicio").slice(1);
+        if (!document.getElementById(h)) h = "inicio";
+        document
+          .querySelectorAll("section.page")
+          .forEach((s) => s.classList.toggle("on", s.id === h));
+        document
+          .querySelectorAll("nav a")
+          .forEach((a) => a.classList.toggle("on", a.dataset.p === h));
+        window.scrollTo(0, 0);
+      }
+      addEventListener("hashchange", route);
+      route();
+
+      // sacola
+      const cart = {};
+      function render() {
+        const ids = Object.keys(cart);
+        $("#cnt").textContent = ids.reduce((s, i) => s + cart[i], 0);
+        $("#items").innerHTML = ids.length
+          ? ids
+              .map(
+                (i) =>
+                  `<div class="item"><span>${cart[i]}× ${prods[i].n}</span><span>${brl(prods[i].p * cart[i])} <button data-rm="${i}">remover</button></span></div>`,
+              )
+              .join("")
+          : "<p style='color:var(--muted)'>Sua sacola está vazia. Adicione uma peça na loja.</p>";
+        $("#total").textContent = brl(
+          ids.reduce((s, i) => s + prods[i].p * cart[i], 0),
+        );
+      }
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("[data-add]"),
+          r = e.target.closest("[data-rm]");
+        if (a) {
+          cart[a.dataset.add] = (cart[a.dataset.add] || 0) + 1;
+          render();
+          $("#drawer").classList.add("open");
+        }
+        if (r) {
+          delete cart[r.dataset.rm];
+          render();
+        }
+      });
+      $("#cartbtn").onclick = () => $("#drawer").classList.add("open");
+      $("#close").onclick = () => $("#drawer").classList.remove("open");
+      $("#checkout").onclick = () => {
+        if (Object.keys(cart).length) {
+          $("#drawer").classList.remove("open");
+          location.hash = "#pagamento";
+          return;
+        }
+        const m = $("#kmsg");
+        m.classList.add("show");
+        m.textContent = Object.keys(cart).length
+          ? "Pedido recebido! Entraremos em contato para combinar o pagamento e o envio."
+          : "Adicione ao menos uma peça para finalizar.";
+      };
+      render();
+
+      // formulários
+      function show(el, t) {
+        el.textContent = t;
+        el.classList.add("show");
+      }
+      $("#cform").onsubmit = (e) => {
+        e.preventDefault();
+        if (
+          !$("#cn").value.trim() ||
+          !/\S+@\S+\.\S+/.test($("#ce").value) ||
+          !$("#cm").value.trim()
+        )
+          return show(
+            $("#cmsg"),
+            "Preencha nome, um e-mail válido e a mensagem.",
+          );
+        show(
+          $("#cmsg"),
+          "Mensagem enviada! Responderemos em até 2 dias úteis.",
+        );
+        e.target.reset();
+      };
+      $("#lform").onsubmit = (e) => {
+        e.preventDefault();
+        if (!/\S+@\S+\.\S+/.test($("#le").value) || !$("#lp").value)
+          return show($("#lmsg"), "Informe um e-mail válido e sua senha.");
+        show(
+          $("#lmsg"),
+          "Login realizado com sucesso. Bem-vindo(a) à FLORZEM!",
+        );
+      };
+      // pagamento (simulado)
+      let ship = 19.9;
+      function money() {
+        const sub = Object.keys(cart).reduce(
+          (s, i) => s + prods[i].p * cart[i],
+          0,
+        );
+        const pay = (document.querySelector("input[name=pay]:checked") || {})
+          .value;
+        const disc = pay === "pix" ? sub * 0.05 : 0;
+        const fr = sub === 0 || sub >= 200 ? 0 : ship;
+        return { sub, disc, fr, pay, tot: sub - disc + fr };
+      }
+      function renderCk() {
+        const ids = Object.keys(cart),
+          m = money();
+        $("#ckitems").innerHTML = ids.length
+          ? ids
+              .map(
+                (i) =>
+                  `<div class="item"><span>${cart[i]}× ${prods[i].n}</span><span>${brl(prods[i].p * cart[i])}</span></div>`,
+              )
+              .join("")
+          : "<p>Sua sacola está vazia. <a href='#loja'>Ir para a loja</a></p>";
+        $("#ckrows").innerHTML =
+          `<div class="item"><span>Subtotal</span><span>${brl(m.sub)}</span></div>` +
+          (m.disc
+            ? `<div class="item"><span>Desconto Pix (5%)</span><span>− ${brl(m.disc)}</span></div>`
+            : "") +
+          `<div class="item"><span>Frete</span><span>${m.fr ? brl(m.fr) : "Grátis"}</span></div>`;
+        $("#cktot").textContent = brl(m.tot);
+        document
+          .querySelectorAll(".paybox")
+          .forEach((b) => (b.hidden = b.dataset.for !== m.pay));
+        const par = $("#parc"),
+          cur = par.value || "1";
+        par.innerHTML = [1, 2, 3]
+          .map(
+            (n) =>
+              `<option value="${n}">${n}x de ${brl(m.tot / n)} sem juros</option>`,
+          )
+          .join("");
+        par.value = cur;
+      }
+      function openCk() {
+        if (location.hash !== "#pagamento") return;
+        $("#pdone").hidden = true;
+        $("#pwrap").hidden = false;
+        renderCk();
+      }
+      addEventListener("hashchange", openCk);
+      openCk();
+      document.addEventListener("click", () => setTimeout(renderCk, 0));
+      document.addEventListener("change", (e) => {
+        if (e.target.name === "ship") ship = +e.target.value;
+        renderCk();
+      });
+      $("#pform").onsubmit = (e) => {
+        e.preventDefault();
+        const m = money(),
+          msg = $("#pmsg");
+        if (!Object.keys(cart).length)
+          return show(msg, "Sua sacola está vazia. Adicione uma peça na loja.");
+        if (
+          ["pn", "pcep", "pend", "pnum", "pcid", "puf"].some(
+            (id) => !$("#" + id).value.trim(),
+          ) ||
+          !/\S+@\S+\.\S+/.test($("#pe").value)
+        )
+          return show(
+            msg,
+            "Preencha seus dados e o endereço de entrega, com um e-mail válido.",
+          );
+        if (
+          m.pay === "card" &&
+          ($("#cc").value.replace(/\D/g, "").length < 13 ||
+            !/^\d{2}\/\d{2}$/.test($("#cv").value.trim()) ||
+            $("#cs").value.replace(/\D/g, "").length < 3 ||
+            !$("#ch").value.trim())
+        )
+          return show(
+            msg,
+            "Confira os dados do cartão: nome, número, validade (MM/AA) e CVV.",
+          );
+        if (!$("#pidade").checked)
+          return show(
+            msg,
+            "Confirme que você tem 18 anos ou mais para continuar.",
+          );
+        const num = "FZ-" + Math.floor(100000 + Math.random() * 900000);
+        const mail = $("#pe").value.replace(/[<>&"]/g, "");
+        const info =
+          m.pay === "pix"
+            ? `<p>Pague com Pix em até 30 minutos. Código de demonstração:</p><input readonly value="PIX-DEMO-${num}" aria-label="Código Pix">`
+            : m.pay === "boleto"
+              ? `<p>Boleto de demonstração com vencimento em ${new Date(Date.now() + 3 * 864e5).toLocaleDateString("pt-BR")}.</p>`
+              : `<p>Pagamento no cartão aprovado em ${$("#parc").value}x sem juros.</p>`;
+        $("#pdone").innerHTML =
+          `<h3>Pedido ${num} recebido</h3><p>Total de ${brl(m.tot)}. Enviaremos a confirmação para ${mail}.</p>${info}<p class="upd">Isto é uma simulação: nada foi cobrado.</p><p><a class="btn" href="#loja">Voltar à loja</a></p>`;
+        $("#pwrap").hidden = true;
+        $("#pdone").hidden = false;
+        msg.classList.remove("show");
+        Object.keys(cart).forEach((k) => delete cart[k]);
+        render();
+        e.target.reset();
+        window.scrollTo(0, 0);
+      };
+    </script>
+  </body>
+</html>
