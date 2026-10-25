@@ -1,425 +1,2290 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Florzem – Piteiras de Vidro e Curso</title>
-<style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
-color-scheme:light;--bg:#ffffff;--surface:#ffffff;--ink:#0b2c31;--muted:#4f6a6e;--line:#d3e5f3;--sea:#2a78b8;--baby:#cfe8fa;--baby2:#eef7fd;--amber:#d98410;--deep:#d9ecfa;--on-deep:#0b2c31;
---serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans)}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-/* header */
-header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
-.logo{display:flex;flex-direction:column;align-items:center;padding:14px 0 6px}
-.logo b{font:700 30px/1 var(--serif);letter-spacing:.14em}
-.logo small{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:.08em}
-.logo svg{width:34px;height:34px;margin-bottom:4px}
-nav{display:flex;flex-wrap:wrap;gap:4px;justify-content:space-between;align-items:center;padding:6px 0 10px}
-nav .l{display:flex;gap:6px}
-nav a{padding:8px 14px;border-radius:999px;font-weight:600;font-size:15px}
-nav a:hover,nav a.on{background:var(--baby);color:var(--ink)}
-nav .acc{border:1.5px solid var(--sea);color:var(--sea)}
-nav .acc:hover,nav .acc.on{background:var(--sea);color:#fff}
-/* views */
-.view{display:none}.view.on{display:block}
-/* carousel */
-.car{position:relative;background:linear-gradient(180deg,#fff,#e6f2fc);color:#0b2c31;border-bottom:1px solid var(--line);overflow:hidden}
-.track{display:flex;will-change:transform}
-.slide{min-width:100%;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:20px;padding:44px 64px;min-height:400px;cursor:pointer}
-.slide h2{font:700 clamp(30px,4.5vw,52px)/1.08 var(--serif);margin:0 0 12px}
-.slide p{margin:0 0 20px;color:var(--muted);max-width:44ch}
-.price{font:700 28px var(--serif);color:var(--amber);margin-bottom:18px}
-.price s{font:400 16px var(--sans);color:var(--muted);margin-left:8px}
-.btn{display:inline-block;background:#f2a93b;color:#1a1204;font-weight:700;padding:13px 26px;border-radius:999px;border:0;cursor:pointer;font-size:16px}
-.btn:hover{background:#ffbf5c}
-.btn.sea{background:var(--sea);color:#fff}
-.art{width:100%;max-width:440px;justify-self:center;background:#dcedfb;border-radius:24px}
-.arr{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;border:0;background:rgba(11,44,49,.08);color:#0b2c31;font-size:22px;cursor:pointer}
-.arr:hover{background:rgba(11,44,49,.16)}.prev{left:12px}.next{right:12px}
-.dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:8px}
-.dots button{width:10px;height:10px;border-radius:50%;border:0;background:rgba(11,44,49,.22);cursor:pointer;padding:0}
-.dots button.on{background:var(--amber);width:28px;border-radius:6px}
-/* sections */
-section.s{padding:56px 0}
-h3.t{font:700 clamp(26px,3.4vw,36px)/1.15 var(--serif);margin:0 0 6px}
-.sub{color:var(--muted);margin:0 0 28px}
-.perks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
-.perk{display:flex;gap:12px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--baby2)}
-.perk svg{flex:none;width:30px;height:30px;color:var(--sea)}
-.perk b{display:block}.perk span{color:var(--muted);font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:translate .2s,box-shadow .2s}
-.card:hover{translate:0 -4px;box-shadow:0 14px 28px rgba(11,44,49,.14)}
-.card .pic{background:#e6f2fc;padding:12px}
-.card .pic svg{width:100%;display:block}
-.card .b{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
-.card h4{margin:0;font:700 18px var(--serif)}
-.card p{margin:0;color:var(--muted);font-size:14px;flex:1}
-.card .row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-.card .row b{font:700 20px var(--serif);color:var(--sea)}
-.tag{position:absolute;margin:10px;background:#f2a93b;color:#1a1204;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
-.pw{position:relative}
-.cta{background:var(--deep);color:var(--on-deep);border-radius:22px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.cta h3{margin:0;font:700 28px var(--serif)}.cta p{margin:4px 0 0;color:var(--muted)}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:8px 0 40px}
-.fact{background:var(--baby2);border:1px solid var(--line);border-radius:14px;padding:16px}
-.fact span{display:block;color:var(--muted);font-size:13px}.fact b{font:700 18px var(--serif)}
-.mods{list-style:none;margin:0 0 40px;padding:0;display:grid;gap:12px;counter-reset:m}
-.mods li{counter-increment:m;display:flex;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:14px}
-.mods li::before{content:counter(m);flex:none;width:34px;height:34px;border-radius:50%;background:var(--baby);display:grid;place-items:center;font-weight:700}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-@media(max-width:760px){.two{grid-template-columns:1fr}}
-.shop{display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:start}
-.flt{background:var(--baby2);border:1px solid var(--line);border-radius:14px;padding:16px;position:sticky;top:170px}
-.flt h5{margin:0 0 10px;font:700 17px var(--serif)}
-.flt label{display:flex;align-items:center;gap:10px;margin:0;padding:7px 0;font-weight:500;cursor:pointer}
-.flt input{width:18px;height:18px;padding:0;accent-color:var(--sea)}
-.flt .fx{margin-top:10px;background:none;border:0;padding:0;color:var(--sea);font:600 14px var(--sans);text-decoration:underline;cursor:pointer}
-@media(max-width:760px){.shop{grid-template-columns:1fr}.flt{position:static;display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center}.flt h5{width:100%;margin:0}.flt label{padding:4px 0}.flt .fx{margin:0}}
-.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
-.sh a{color:var(--sea);font-weight:600;text-decoration:underline;padding-bottom:28px}
-.flt h5:not(:first-child){margin-top:18px}
-.pr{display:flex;align-items:center;gap:6px}.pr span{color:var(--muted);font-size:13px}
-.flt input[type=number]{width:100%;min-width:0;height:auto;padding:8px 10px;font-size:14px}
-.ci{display:grid;grid-template-columns:1fr auto auto auto;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px}
-.ci .cn span{display:block;color:var(--muted);font-size:14px}
-.cq{display:flex;align-items:center;gap:10px}.cq button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--baby2);color:var(--ink);font-size:18px;cursor:pointer;padding:0}
-.ct{font:700 18px var(--serif);color:var(--sea);min-width:90px;text-align:right}
-.cx{background:none;border:0;color:var(--sea);text-decoration:underline;cursor:pointer;font:600 14px var(--sans)}
-.sum{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px;padding:20px;border-radius:16px;background:var(--baby2);border:1px solid var(--line)}
-.sum b{font:700 26px var(--serif)}
-@media(max-width:760px){.ci{grid-template-columns:1fr 1fr}.ct{text-align:left}}
-.kh{font:700 20px var(--serif);margin:28px 0 10px}.kh:first-child{margin-top:0}
-.opt{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;margin:0 0 8px;font-weight:600;font-size:16px;cursor:pointer;background:var(--surface)}
-.opt small{display:block;color:var(--muted);font-weight:400;font-size:14px}
-.opt input{width:18px;height:18px;padding:0;flex:none;accent-color:var(--sea)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-/* conta */
-.box{max-width:440px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px}
-.tabs{display:flex;gap:6px;margin-bottom:18px}
-.tabs button{flex:1;padding:10px;border:1px solid var(--line);background:none;color:var(--ink);border-radius:10px;font:600 15px var(--sans);cursor:pointer}
-.tabs button.on{background:var(--sea);color:#fff;border-color:var(--sea)}
-label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
-input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:16px var(--sans)}
-.msg{margin-top:14px;color:var(--sea);font-weight:600;min-height:1.4em}
-/* footer */
-footer{background:var(--baby2);color:var(--muted);border-top:1px solid var(--line);padding:32px 0 90px;font-size:14px}
-header .wrap{position:relative}
-.srch{position:absolute;left:20px;top:22px;width:min(250px,26vw)}
-.srch input{border-radius:999px;padding:9px 14px 9px 38px;font-size:14px;background:var(--baby2);-webkit-appearance:none;appearance:none}
-.mg{position:absolute;left:13px;top:50%;translate:0 -50%;width:16px;height:16px;color:var(--muted);pointer-events:none}
-@media(max-width:760px){.srch{position:relative;left:auto;top:auto;width:100%;padding-top:12px}.srch .mg{top:calc(50% + 6px)}}
-footer a{text-decoration:underline}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-footer b{color:var(--ink)}
-/* whatsapp */
-.wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.35);z-index:30}
-.wa:hover{scale:1.08}.wa svg{width:34px;height:34px}
-@media(max-width:760px){
-.slide{grid-template-columns:1fr;padding:32px 24px 56px;text-align:left;min-height:0}
-.art{max-width:300px;order:-1}.arr{display:none}
-nav a{padding:7px 9px;font-size:13px}nav .l{gap:0}.cta{padding:26px}}
-@media (prefers-reduced-motion:reduce){.card{transition:none}html{scroll-behavior:auto}}
-</style>
-</head>
-<body>
-<header>
- <div class="wrap">
-  <form class="srch" id="sf" role="search"><svg class="mg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Buscar produtos" aria-label="Buscar produtos" autocomplete="off"></form>
-  <a class="logo" href="#inicio" aria-label="Florzem – página inicial">
-   <svg viewBox="0 0 40 40" fill="none"><rect x="4" y="16" width="32" height="8" rx="4" transform="rotate(-25 20 20)" fill="#2a78b8"/><rect x="8" y="17" width="20" height="2" rx="1" transform="rotate(-25 20 20)" fill="#fff" opacity=".6"/><circle cx="32" cy="9" r="3" fill="#d98410"/></svg>
-   <b>FLORZEM</b><small>piteiras de vidro e curso</small>
-  </a>
-  <nav aria-label="Principal">
-   <div class="l"><a href="#acessorios" data-v="acessorios">Acessórios</a><a href="#basico" data-v="basico">Básico</a><a href="#premium" data-v="premium">Premium</a><a href="#kits" data-v="kits">Kits</a><a href="#unicas" data-v="unicas">Peças Únicas</a><a href="#sobre" data-v="sobre">Sobre</a></div>
-   <div class="l"><a class="acc" href="#conta" data-v="conta">Minha Conta</a><a class="acc" href="#carrinho" data-v="carrinho">Carrinho (<span id="cc">0</span>)</a></div>
-  </nav>
- </div>
-</header>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Florzem – Piteiras de Vidro e Curso</title>
+    <style>
+      :root {
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        color-scheme: light;
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --ink: #0b2c31;
+        --muted: #4f6a6e;
+        --line: #d3e5f3;
+        --sea: #2a78b8;
+        --baby: #cfe8fa;
+        --baby2: #eef7fd;
+        --amber: #d98410;
+        --deep: #d9ecfa;
+        --on-deep: #0b2c31;
+        --serif: Georgia, "Times New Roman", serif;
+        --sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 var(--sans);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      :focus-visible {
+        outline: 3px solid var(--amber);
+        outline-offset: 2px;
+      }
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      /* header */
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 20;
+      }
+      .logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 14px 0 6px;
+      }
+      .logo b {
+        font: 700 30px/1 var(--serif);
+        letter-spacing: 0.14em;
+      }
+      .logo small {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+        letter-spacing: 0.08em;
+      }
+      .logo svg {
+        width: 34px;
+        height: 34px;
+        margin-bottom: 4px;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0 10px;
+      }
+      nav .l {
+        display: flex;
+        gap: 6px;
+      }
+      nav a {
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 15px;
+      }
+      nav a:hover,
+      nav a.on {
+        background: var(--baby);
+        color: var(--ink);
+      }
+      nav .acc {
+        border: 1.5px solid var(--sea);
+        color: var(--sea);
+      }
+      nav .acc:hover,
+      nav .acc.on {
+        background: var(--sea);
+        color: #fff;
+      }
+      /* views */
+      .view {
+        display: none;
+      }
+      .view.on {
+        display: block;
+      }
+      /* carousel */
+      .car {
+        position: relative;
+        background: linear-gradient(180deg, #fff, #e6f2fc);
+        color: #0b2c31;
+        border-bottom: 1px solid var(--line);
+        overflow: hidden;
+      }
+      .track {
+        display: flex;
+        will-change: transform;
+      }
+      .slide {
+        min-width: 100%;
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        align-items: center;
+        gap: 20px;
+        padding: 44px 64px;
+        min-height: 400px;
+        cursor: pointer;
+      }
+      .slide h2 {
+        font: 700 clamp(30px, 4.5vw, 52px)/1.08 var(--serif);
+        margin: 0 0 12px;
+      }
+      .slide p {
+        margin: 0 0 20px;
+        color: var(--muted);
+        max-width: 44ch;
+      }
+      .price {
+        font: 700 28px var(--serif);
+        color: var(--amber);
+        margin-bottom: 18px;
+      }
+      .price s {
+        font: 400 16px var(--sans);
+        color: var(--muted);
+        margin-left: 8px;
+      }
+      .btn {
+        display: inline-block;
+        background: #f2a93b;
+        color: #1a1204;
+        font-weight: 700;
+        padding: 13px 26px;
+        border-radius: 999px;
+        border: 0;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .btn:hover {
+        background: #ffbf5c;
+      }
+      .btn.sea {
+        background: var(--sea);
+        color: #fff;
+      }
+      .art {
+        width: 100%;
+        max-width: 440px;
+        justify-self: center;
+        background: #dcedfb;
+        border-radius: 24px;
+      }
+      .arr {
+        position: absolute;
+        top: 50%;
+        translate: 0 -50%;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 0;
+        background: rgba(11, 44, 49, 0.08);
+        color: #0b2c31;
+        font-size: 22px;
+        cursor: pointer;
+      }
+      .arr:hover {
+        background: rgba(11, 44, 49, 0.16);
+      }
+      .prev {
+        left: 12px;
+      }
+      .next {
+        right: 12px;
+      }
+      .dots {
+        position: absolute;
+        bottom: 14px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+      .dots button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 0;
+        background: rgba(11, 44, 49, 0.22);
+        cursor: pointer;
+        padding: 0;
+      }
+      .dots button.on {
+        background: var(--amber);
+        width: 28px;
+        border-radius: 6px;
+      }
+      /* sections */
+      section.s {
+        padding: 56px 0;
+      }
+      h3.t {
+        font: 700 clamp(26px, 3.4vw, 36px)/1.15 var(--serif);
+        margin: 0 0 6px;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 28px;
+      }
+      .perks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 16px;
+      }
+      .perk {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--baby2);
+      }
+      .perk svg {
+        flex: none;
+        width: 30px;
+        height: 30px;
+        color: var(--sea);
+      }
+      .perk b {
+        display: block;
+      }
+      .perk span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 22px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          translate 0.2s,
+          box-shadow 0.2s;
+      }
+      .card:hover {
+        translate: 0 -4px;
+        box-shadow: 0 14px 28px rgba(11, 44, 49, 0.14);
+      }
+      .card .pic {
+        background: #e6f2fc;
+        padding: 12px;
+      }
+      .card .pic svg {
+        width: 100%;
+        display: block;
+      }
+      .card .b {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
+      }
+      .card h4 {
+        margin: 0;
+        font: 700 18px var(--serif);
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        flex: 1;
+      }
+      .card .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+      }
+      .card .row b {
+        font: 700 20px var(--serif);
+        color: var(--sea);
+      }
+      .tag {
+        position: absolute;
+        margin: 10px;
+        background: #f2a93b;
+        color: #1a1204;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 999px;
+      }
+      .pw {
+        position: relative;
+      }
+      .cta {
+        background: var(--deep);
+        color: var(--on-deep);
+        border-radius: 22px;
+        padding: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .cta h3 {
+        margin: 0;
+        font: 700 28px var(--serif);
+      }
+      .cta p {
+        margin: 4px 0 0;
+        color: var(--muted);
+      }
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 14px;
+        margin: 8px 0 40px;
+      }
+      .fact {
+        background: var(--baby2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+      }
+      .fact span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .fact b {
+        font: 700 18px var(--serif);
+      }
+      .mods {
+        list-style: none;
+        margin: 0 0 40px;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+        counter-reset: m;
+      }
+      .mods li {
+        counter-increment: m;
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+      .mods li::before {
+        content: counter(m);
+        flex: none;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--baby);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: start;
+      }
+      @media (max-width: 760px) {
+        .two {
+          grid-template-columns: 1fr;
+        }
+      }
+      .shop {
+        display: grid;
+        grid-template-columns: 210px 1fr;
+        gap: 28px;
+        align-items: start;
+      }
+      .flt {
+        background: var(--baby2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+        position: sticky;
+        top: 170px;
+      }
+      .flt h5 {
+        margin: 0 0 10px;
+        font: 700 17px var(--serif);
+      }
+      .flt label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        padding: 7px 0;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .flt input {
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        accent-color: var(--sea);
+      }
+      .flt .fx {
+        margin-top: 10px;
+        background: none;
+        border: 0;
+        padding: 0;
+        color: var(--sea);
+        font: 600 14px var(--sans);
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      @media (max-width: 760px) {
+        .shop {
+          grid-template-columns: 1fr;
+        }
+        .flt {
+          position: static;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px 18px;
+          align-items: center;
+        }
+        .flt h5 {
+          width: 100%;
+          margin: 0;
+        }
+        .flt label {
+          padding: 4px 0;
+        }
+        .flt .fx {
+          margin: 0;
+        }
+      }
+      .sh {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .sh a {
+        color: var(--sea);
+        font-weight: 600;
+        text-decoration: underline;
+        padding-bottom: 28px;
+      }
+      .flt h5:not(:first-child) {
+        margin-top: 18px;
+      }
+      .pr {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .pr span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .flt input[type="number"] {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        padding: 8px 10px;
+        font-size: 14px;
+      }
+      .ci {
+        display: grid;
+        grid-template-columns: 1fr auto auto auto;
+        gap: 14px;
+        align-items: center;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        margin-bottom: 10px;
+      }
+      .ci .cn span {
+        display: block;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .cq {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .cq button {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: var(--baby2);
+        color: var(--ink);
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0;
+      }
+      .ct {
+        font: 700 18px var(--serif);
+        color: var(--sea);
+        min-width: 90px;
+        text-align: right;
+      }
+      .cx {
+        background: none;
+        border: 0;
+        color: var(--sea);
+        text-decoration: underline;
+        cursor: pointer;
+        font: 600 14px var(--sans);
+      }
+      .sum {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 16px;
+        background: var(--baby2);
+        border: 1px solid var(--line);
+      }
+      .sum b {
+        font: 700 26px var(--serif);
+      }
+      @media (max-width: 760px) {
+        .ci {
+          grid-template-columns: 1fr 1fr;
+        }
+        .ct {
+          text-align: left;
+        }
+      }
+      .kh {
+        font: 700 20px var(--serif);
+        margin: 28px 0 10px;
+      }
+      .kh:first-child {
+        margin-top: 0;
+      }
+      .opt {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        margin: 0 0 8px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        background: var(--surface);
+      }
+      .opt small {
+        display: block;
+        color: var(--muted);
+        font-weight: 400;
+        font-size: 14px;
+      }
+      .opt input {
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        flex: none;
+        accent-color: var(--sea);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      /* conta */
+      .box {
+        max-width: 440px;
+        margin: 0 auto;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 28px;
+      }
+      .tabs {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .tabs button {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid var(--line);
+        background: none;
+        color: var(--ink);
+        border-radius: 10px;
+        font: 600 15px var(--sans);
+        cursor: pointer;
+      }
+      .tabs button.on {
+        background: var(--sea);
+        color: #fff;
+        border-color: var(--sea);
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        margin: 12px 0 4px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px var(--sans);
+      }
+      .msg {
+        margin-top: 14px;
+        color: var(--sea);
+        font-weight: 600;
+        min-height: 1.4em;
+      }
+      /* footer */
+      footer {
+        background: var(--baby2);
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        padding: 32px 0 90px;
+        font-size: 14px;
+      }
+      header .wrap {
+        position: relative;
+      }
+      .srch {
+        position: absolute;
+        left: 20px;
+        top: 22px;
+        width: min(250px, 26vw);
+      }
+      .srch input {
+        border-radius: 999px;
+        padding: 9px 14px 9px 38px;
+        font-size: 14px;
+        background: var(--baby2);
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      .mg {
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        translate: 0 -50%;
+        width: 16px;
+        height: 16px;
+        color: var(--muted);
+        pointer-events: none;
+      }
+      @media (max-width: 760px) {
+        .srch {
+          position: relative;
+          left: auto;
+          top: auto;
+          width: 100%;
+          padding-top: 12px;
+        }
+        .srch .mg {
+          top: calc(50% + 6px);
+        }
+      }
+      footer a {
+        text-decoration: underline;
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      footer b {
+        color: var(--ink);
+      }
+      /* whatsapp */
+      .wa {
+        position: fixed;
+        right: 18px;
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #25d366;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        z-index: 30;
+      }
+      .wa:hover {
+        scale: 1.08;
+      }
+      .wa svg {
+        width: 34px;
+        height: 34px;
+      }
+      @media (max-width: 760px) {
+        .slide {
+          grid-template-columns: 1fr;
+          padding: 32px 24px 56px;
+          text-align: left;
+          min-height: 0;
+        }
+        .art {
+          max-width: 300px;
+          order: -1;
+        }
+        .arr {
+          display: none;
+        }
+        nav a {
+          padding: 7px 9px;
+          font-size: 13px;
+        }
+        nav .l {
+          gap: 0;
+        }
+        .cta {
+          padding: 26px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .card {
+          transition: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <form class="srch" id="sf" role="search">
+          <svg
+            class="mg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-4-4" /></svg
+          ><input
+            id="q"
+            type="search"
+            placeholder="Buscar produtos"
+            aria-label="Buscar produtos"
+            autocomplete="off"
+          />
+        </form>
+        <a class="logo" href="#inicio" aria-label="Florzem – página inicial">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect
+              x="4"
+              y="16"
+              width="32"
+              height="8"
+              rx="4"
+              transform="rotate(-25 20 20)"
+              fill="#2a78b8"
+            />
+            <rect
+              x="8"
+              y="17"
+              width="20"
+              height="2"
+              rx="1"
+              transform="rotate(-25 20 20)"
+              fill="#fff"
+              opacity=".6"
+            />
+            <circle cx="32" cy="9" r="3" fill="#d98410" />
+          </svg>
+          <b>FLORZEM</b><small>piteiras de vidro e curso</small>
+        </a>
+        <nav aria-label="Principal">
+          <div class="l">
+            <a href="#acessorios" data-v="acessorios">Acessórios</a
+            ><a href="#basico" data-v="basico">Básico</a
+            ><a href="#premium" data-v="premium">Premium</a
+            ><a href="#kits" data-v="kits">Kits</a
+            ><a href="#unicas" data-v="unicas">Peças Únicas</a
+          </div>
+          <div class="l">
+            <a class="acc" href="#conta" data-v="conta">Minha Conta</a
+            ><a class="acc" href="#carrinho" data-v="carrinho"
+              >Carrinho (<span id="cc">0</span>)</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
 
-<main>
-<!-- INÍCIO -->
-<div class="view" id="v-inicio">
- <div class="car" role="region" aria-label="Destaques" aria-roledescription="carrossel">
-  <div class="track" id="track"></div>
-  <button class="arr prev" aria-label="Anterior">‹</button><button class="arr next" aria-label="Próximo">›</button>
-  <div class="dots" id="dots"></div>
- </div>
- <section class="s"><div class="wrap">
-  <div class="perks">
-   <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9V7z"/></svg><div><b>Vidro borossilicato</b><span>Resistente ao calor e fácil de limpar.</span></div></div>
-   <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="13" height="9" rx="1"/><path d="M15 10h4l3 3v3h-7M6 19a1.5 1.5 0 1 0 0 .1M18 19a1.5 1.5 0 1 0 0 .1"/></svg><div><b>Envio para todo o Brasil</b><span>Embalagem reforçada anti-quebra.</span></div></div>
-   <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 1 3 6.2L4 20l1.2-3.6A8 8 0 0 1 4 12z"/></svg><div><b>Atendimento no WhatsApp</b><span>Tire dúvidas antes de comprar.</span></div></div>
-   <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7-6.3-3.6-6.3 3.6 1.5-7L2 9.3l7-.8z"/></svg><div><b>Troca garantida</b><span>Chegou com defeito? Trocamos.</span></div></div>
-  </div>
- </div></section>
- <section class="s" style="padding-top:0"><div class="wrap">
-  <div class="sh"><div><h3 class="t">Premium</h3><p class="sub">Vidro colorido com acabamento especial.</p></div><a href="#premium">Ver todos</a></div>
-  <div class="grid" id="g-premium"></div>
- </div></section>
- <section class="s" style="padding-top:0"><div class="wrap">
-  <div class="sh"><div><h3 class="t">Kits</h3><p class="sub">Combos prontos para usar ou presentear.</p></div><a href="#kits">Ver todos</a></div>
-  <div class="grid" id="g-kits"></div>
- </div></section>
- <section class="s" style="padding-top:0"><div class="wrap">
-  <div class="sh"><div><h3 class="t">Mais vendidos</h3><p class="sub">As favoritas de quem já comprou na Florzem.</p></div><a href="#loja">Ver todos os produtos</a></div>
-  <div class="grid" id="g-top"></div>
- </div></section>
- <section class="s" style="padding-top:0"><div class="wrap"><div class="cta">
-  <div><h3>Ficou com dúvida de qual escolher?</h3><p>Fale com a gente e receba uma indicação pelo WhatsApp.</p></div>
-  <a class="btn" id="cta-wa" target="_blank" rel="noopener">Chamar no WhatsApp</a>
- </div></div></section>
-</div>
+    <main>
+      <!-- INÍCIO -->
+      <div class="view" id="v-inicio">
+        <div
+          class="car"
+          role="region"
+          aria-label="Destaques"
+          aria-roledescription="carrossel"
+        >
+          <div class="track" id="track"></div>
+          <button class="arr prev" aria-label="Anterior">‹</button
+          ><button class="arr next" aria-label="Próximo">›</button>
+          <div class="dots" id="dots"></div>
+        </div>
+        <section class="s">
+          <div class="wrap">
+            <div class="perks">
+              <div class="perk">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M12 3l8 4v5c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9V7z"
+                  />
+                </svg>
+                <div>
+                  <b>Vidro borossilicato</b
+                  ><span>Resistente ao calor e fácil de limpar.</span>
+                </div>
+              </div>
+              <div class="perk">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <rect x="2" y="7" width="13" height="9" rx="1" />
+                  <path
+                    d="M15 10h4l3 3v3h-7M6 19a1.5 1.5 0 1 0 0 .1M18 19a1.5 1.5 0 1 0 0 .1"
+                  />
+                </svg>
+                <div>
+                  <b>Envio para todo o Brasil</b
+                  ><span>Embalagem reforçada anti-quebra.</span>
+                </div>
+              </div>
+              <div class="perk">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M4 12a8 8 0 1 1 3 6.2L4 20l1.2-3.6A8 8 0 0 1 4 12z"
+                  />
+                </svg>
+                <div>
+                  <b>Atendimento no WhatsApp</b
+                  ><span>Tire dúvidas antes de comprar.</span>
+                </div>
+              </div>
+              <div class="perk">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7-6.3-3.6-6.3 3.6 1.5-7L2 9.3l7-.8z"
+                  />
+                </svg>
+                <div>
+                  <b>Troca garantida</b
+                  ><span>Chegou com defeito? Trocamos.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s" style="padding-top: 0">
+          <div class="wrap">
+            <div class="sh">
+              <div>
+                <h3 class="t">Premium</h3>
+                <p class="sub">Vidro colorido com acabamento especial.</p>
+              </div>
+              <a href="#premium">Ver todos</a>
+            </div>
+            <div class="grid" id="g-premium"></div>
+          </div>
+        </section>
+        <section class="s" style="padding-top: 0">
+          <div class="wrap">
+            <div class="sh">
+              <div>
+                <h3 class="t">Kits</h3>
+                <p class="sub">Combos prontos para usar ou presentear.</p>
+              </div>
+              <a href="#kits">Ver todos</a>
+            </div>
+            <div class="grid" id="g-kits"></div>
+          </div>
+        </section>
+        <section class="s" style="padding-top: 0">
+          <div class="wrap">
+            <div class="sh">
+              <div>
+                <h3 class="t">Mais vendidos</h3>
+                <p class="sub">As favoritas de quem já comprou na Florzem.</p>
+              </div>
+              <a href="#loja">Ver todos os produtos</a>
+            </div>
+            <div class="grid" id="g-top"></div>
+          </div>
+        </section>
+        <section class="s" style="padding-top: 0">
+          <div class="wrap">
+            <div class="cta">
+              <div>
+                <h3>Ficou com dúvida de qual escolher?</h3>
+                <p>Fale com a gente e receba uma indicação pelo WhatsApp.</p>
+              </div>
+              <a class="btn" id="cta-wa" target="_blank" rel="noopener"
+                >Chamar no WhatsApp</a
+              >
+            </div>
+          </div>
+        </section>
+      </div>
 
-<!-- LOJA / PÁGINA DE VENDA -->
-<div class="view" id="v-loja">
- <section class="s"><div class="wrap">
-  <h3 class="t">Loja</h3><p class="sub">Todas as piteiras de vidro disponíveis. Clique em “Comprar” para finalizar o pedido pelo WhatsApp.</p>
-  <div class="shop"><aside class="flt" aria-label="Filtros"></aside><div class="grid" id="g-loja"></div></div>
- </div></section>
-</div>
+      <!-- LOJA / PÁGINA DE VENDA -->
+      <div class="view" id="v-loja">
+        <section class="s">
+          <div class="wrap">
+            <h3 class="t">Loja</h3>
+            <p class="sub">
+              Todas as piteiras de vidro disponíveis. Clique em “Comprar” para
+              finalizar o pedido pelo WhatsApp.
+            </p>
+            <div class="shop">
+              <aside class="flt" aria-label="Filtros"></aside>
+              <div class="grid" id="g-loja"></div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-<!-- CATEGORIA E BUSCA -->
-<div class="view" id="v-cat"><section class="s"><div class="wrap"><h3 class="t" id="ct"></h3><p class="sub" id="cs"></p><div class="shop"><aside class="flt" aria-label="Filtros"></aside><div class="grid" id="g-cat"></div></div></div></section></div>
-<div class="view" id="v-busca"><section class="s"><div class="wrap"><h3 class="t" id="st"></h3><p class="sub" id="sc" role="status"></p><div class="shop"><aside class="flt" aria-label="Filtros"></aside><div class="grid" id="g-busca"></div></div></div></section></div>
+      <!-- CATEGORIA E BUSCA -->
+      <div class="view" id="v-cat">
+        <section class="s">
+          <div class="wrap">
+            <h3 class="t" id="ct"></h3>
+            <p class="sub" id="cs"></p>
+            <div class="shop">
+              <aside class="flt" aria-label="Filtros"></aside>
+              <div class="grid" id="g-cat"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="view" id="v-busca">
+        <section class="s">
+          <div class="wrap">
+            <h3 class="t" id="st"></h3>
+            <p class="sub" id="sc" role="status"></p>
+            <div class="shop">
+              <aside class="flt" aria-label="Filtros"></aside>
+              <div class="grid" id="g-busca"></div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-<!-- CURSO -->
-<div class="view" id="v-curso">
- <section class="s"><div class="wrap">
-  <h3 class="t">Curso Florzem</h3><p class="sub">Aprenda a trabalhar com vidro do zero, com aulas práticas e acompanhamento da equipe.</p>
-  <div class="facts">
-   <div class="fact"><span>Nível</span><b>Iniciante</b></div>
-   <div class="fact"><span>Formato</span><b>Aulas práticas</b></div>
-   <div class="fact"><span>Certificado</span><b>Incluso</b></div>
-   <div class="fact"><span>Turmas e valores</span><b>Consulte no WhatsApp</b></div>
-  </div>
-  <h3 class="t" style="font-size:26px">O que você vai aprender</h3><p class="sub">Do primeiro contato com o material até a venda das suas peças.</p>
-  <ol class="mods"><li>Introdução ao vidro e segurança no ateliê</li><li>Ferramentas e materiais</li><li>Técnicas básicas de modelagem</li><li>Acabamento e polimento</li><li>Da bancada para a venda</li></ol>
-  <div class="cta"><div><h3>Quer fazer parte da próxima turma?</h3><p>Chame a gente e receba datas, valores e formas de pagamento.</p></div><a class="btn" id="cu-wa" target="_blank" rel="noopener">Quero me inscrever</a></div>
- </div></section>
-</div>
+      <!-- CURSO -->
+      <div class="view" id="v-curso">
+        <section class="s">
+          <div class="wrap">
+            <h3 class="t">Curso Florzem</h3>
+            <p class="sub">
+              Aprenda a trabalhar com vidro do zero, com aulas práticas e
+              acompanhamento da equipe.
+            </p>
+            <div class="facts">
+              <div class="fact"><span>Nível</span><b>Iniciante</b></div>
+              <div class="fact"><span>Formato</span><b>Aulas práticas</b></div>
+              <div class="fact"><span>Certificado</span><b>Incluso</b></div>
+              <div class="fact">
+                <span>Turmas e valores</span><b>Consulte no WhatsApp</b>
+              </div>
+            </div>
+            <h3 class="t" style="font-size: 26px">O que você vai aprender</h3>
+            <p class="sub">
+              Do primeiro contato com o material até a venda das suas peças.
+            </p>
+            <ol class="mods">
+              <li>Introdução ao vidro e segurança no ateliê</li>
+              <li>Ferramentas e materiais</li>
+              <li>Técnicas básicas de modelagem</li>
+              <li>Acabamento e polimento</li>
+              <li>Da bancada para a venda</li>
+            </ol>
+            <div class="cta">
+              <div>
+                <h3>Quer fazer parte da próxima turma?</h3>
+                <p>
+                  Chame a gente e receba datas, valores e formas de pagamento.
+                </p>
+              </div>
+              <a class="btn" id="cu-wa" target="_blank" rel="noopener"
+                >Quero me inscrever</a
+              >
+            </div>
+          </div>
+        </section>
+      </div>
 
-<!-- SOBRE -->
-<div class="view" id="v-sobre">
- <section class="s"><div class="wrap">
-  <h3 class="t">Sobre a Florzem</h3><p class="sub">Da bancada do ateliê até a sua mão: a história por trás de cada piteira.</p>
-  <div class="two" style="margin-bottom:40px">
-   <div><p>A Florzem nasceu de um interesse simples: transformar vidro em peças bonitas, resistentes e úteis no dia a dia. O que começou como uma produção pequena, feita à mão, foi ganhando forma à medida que mais gente pedia, provava e voltava.</p><p>Hoje, a Florzem faz piteiras de vidro borossilicato, com modelos transparentes, coloridos, kits e peças únicas, e envia para todo o Brasil. Cada peça passa por acabamento e conferência antes de sair do ateliê.</p></div>
-   <svg viewBox="0 0 400 240" class="art" role="img" aria-label="Piteira de vidro em destaque"><circle cx="336" cy="44" r="26" fill="#cfe8fa"/><circle cx="60" cy="196" r="16" fill="#cfe8fa"/><g transform="rotate(-18 200 120)"><rect x="40" y="100" width="320" height="38" rx="19" fill="#2a78b8" opacity=".9"/><rect x="58" y="106" width="270" height="6" rx="3" fill="#fff" opacity=".7"/></g></svg>
-  </div>
-  <h3 class="t" style="font-size:26px">Nossa história</h3><p class="sub">Os passos que trouxeram a Florzem até aqui.</p>
-  <ol class="mods"><li><span><b>O começo.</b> As primeiras piteiras saíram de uma bancada pequena, com poucas ferramentas e muita vontade de aprender o ofício.</span></li><li><span><b>Do ateliê para o Brasil.</b> Com a procura crescendo, a Florzem passou a enviar para todo o país, com embalagem reforçada contra quebra.</span></li><li><span><b>Peças coloridas e únicas.</b> Entraram as linhas Premium e as Peças Únicas, feitas à mão e sem repetição.</span></li><li><span><b>Ensinar o que aprendemos.</b> Surgiu o curso, para quem quer começar do zero e levar o vidro da bancada para a venda.</span></li></ol>
-  <h3 class="t" style="font-size:26px">No que a gente acredita</h3><p class="sub" style="margin-bottom:16px">Três ideias guiam o trabalho aqui.</p>
-  <div class="perks" style="margin-bottom:40px">
-   <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9V7z"/></svg><div><b>Qualidade do material</b><span>Vidro borossilicato, resistente ao calor.</span></div></div>
-   <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7-6.3-3.6-6.3 3.6 1.5-7L2 9.3l7-.8z"/></svg><div><b>Feito com cuidado</b><span>Acabamento e conferência peça a peça.</span></div></div>
-   <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 1 3 6.2L4 20l1.2-3.6A8 8 0 0 1 4 12z"/></svg><div><b>Atendimento próximo</b><span>Conversa direta pelo WhatsApp.</span></div></div>
-  </div>
-  <div class="cta"><div><h3>Conheça as peças da Florzem</h3><p>Veja os modelos e filtre por bocal, espessura e quantidade.</p></div><a class="btn" href="#loja">Ir para a loja</a></div>
- </div></section>
-</div>
+      <!-- SOBRE -->
+      <div class="view" id="v-sobre">
+        <section class="s">
+          <div class="wrap">
+            <h3 class="t">Sobre a Florzem</h3>
+            <p class="sub">
+              Da bancada do ateliê até a sua mão: a história por trás de cada
+              piteira.
+            </p>
+            <div class="two" style="margin-bottom: 40px">
+              <div>
+                <p>
+                  A Florzem nasceu de um interesse simples: transformar vidro em
+                  peças bonitas, resistentes e úteis no dia a dia. O que começou
+                  como uma produção pequena, feita à mão, foi ganhando forma à
+                  medida que mais gente pedia, provava e voltava.
+                </p>
+                <p>
+                  Hoje, a Florzem faz piteiras de vidro borossilicato, com
+                  modelos transparentes, coloridos, kits e peças únicas, e envia
+                  para todo o Brasil. Cada peça passa por acabamento e
+                  conferência antes de sair do ateliê.
+                </p>
+              </div>
+              <svg
+                viewBox="0 0 400 240"
+                class="art"
+                role="img"
+                aria-label="Piteira de vidro em destaque"
+              >
+                <circle cx="336" cy="44" r="26" fill="#cfe8fa" />
+                <circle cx="60" cy="196" r="16" fill="#cfe8fa" />
+                <g transform="rotate(-18 200 120)">
+                  <rect
+                    x="40"
+                    y="100"
+                    width="320"
+                    height="38"
+                    rx="19"
+                    fill="#2a78b8"
+                    opacity=".9"
+                  />
+                  <rect
+                    x="58"
+                    y="106"
+                    width="270"
+                    height="6"
+                    rx="3"
+                    fill="#fff"
+                    opacity=".7"
+                  />
+                </g>
+              </svg>
+            </div>
+            <h3 class="t" style="font-size: 26px">Nossa história</h3>
+            <p class="sub">Os passos que trouxeram a Florzem até aqui.</p>
+            <ol class="mods">
+              <li>
+                <span
+                  ><b>O começo.</b> As primeiras piteiras saíram de uma bancada
+                  pequena, com poucas ferramentas e muita vontade de aprender o
+                  ofício.</span
+                >
+              </li>
+              <li>
+                <span
+                  ><b>Do ateliê para o Brasil.</b> Com a procura crescendo, a
+                  Florzem passou a enviar para todo o país, com embalagem
+                  reforçada contra quebra.</span
+                >
+              </li>
+              <li>
+                <span
+                  ><b>Peças coloridas e únicas.</b> Entraram as linhas Premium e
+                  as Peças Únicas, feitas à mão e sem repetição.</span
+                >
+              </li>
+              <li>
+                <span
+                  ><b>Ensinar o que aprendemos.</b> Surgiu o curso, para quem
+                  quer começar do zero e levar o vidro da bancada para a
+                  venda.</span
+                >
+              </li>
+            </ol>
+            <h3 class="t" style="font-size: 26px">No que a gente acredita</h3>
+            <p class="sub" style="margin-bottom: 16px">
+              Três ideias guiam o trabalho aqui.
+            </p>
+            <div class="perks" style="margin-bottom: 40px">
+              <div class="perk">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M12 3l8 4v5c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9V7z"
+                  />
+                </svg>
+                <div>
+                  <b>Qualidade do material</b
+                  ><span>Vidro borossilicato, resistente ao calor.</span>
+                </div>
+              </div>
+              <div class="perk">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7-6.3-3.6-6.3 3.6 1.5-7L2 9.3l7-.8z"
+                  />
+                </svg>
+                <div>
+                  <b>Feito com cuidado</b
+                  ><span>Acabamento e conferência peça a peça.</span>
+                </div>
+              </div>
+              <div class="perk">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M4 12a8 8 0 1 1 3 6.2L4 20l1.2-3.6A8 8 0 0 1 4 12z"
+                  />
+                </svg>
+                <div>
+                  <b>Atendimento próximo</b
+                  ><span>Conversa direta pelo WhatsApp.</span>
+                </div>
+              </div>
+            </div>
+            <div class="cta">
+              <div>
+                <h3>Conheça as peças da Florzem</h3>
+                <p>
+                  Veja os modelos e filtre por bocal, espessura e quantidade.
+                </p>
+              </div>
+              <a class="btn" href="#loja">Ir para a loja</a>
+            </div>
+          </div>
+        </section>
+      </div>
 
-<!-- CONTATO -->
-<div class="view" id="v-contato">
- <section class="s"><div class="wrap">
-  <h3 class="t">Contato</h3><p class="sub">Dúvidas sobre produtos, pedidos ou o curso? Escreva e respondemos pelo WhatsApp.</p>
-  <div class="two">
-   <div class="box" style="margin:0;max-width:none"><form id="cf" novalidate>
-    <label for="cn">Seu nome</label><input id="cn" autocomplete="name">
-    <label for="ca">Assunto</label><select id="ca"><option>Loja e pedidos</option><option>Curso</option><option>Outro assunto</option></select>
-    <label for="cm">Mensagem</label><textarea id="cm" rows="4"></textarea>
-    <button class="btn sea" style="width:100%;margin-top:18px">Enviar pelo WhatsApp</button>
-   </form></div>
-   <div class="perks" style="grid-template-columns:1fr">
-    <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 1 3 6.2L4 20l1.2-3.6A8 8 0 0 1 4 12z"/></svg><div><b>WhatsApp</b><span>O canal mais rápido para pedidos e inscrições.</span></div></div>
-    <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Horário de atendimento</b><span>Segunda a sábado, das 9h às 18h.</span></div></div>
-    <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="13" height="9" rx="1"/><path d="M15 10h4l3 3v3h-7"/></svg><div><b>Envio para todo o Brasil</b><span>Informe seu CEP e calculamos o frete.</span></div></div>
-   </div>
-  </div>
- </div></section>
-</div>
+      <!-- CONTATO -->
+      <div class="view" id="v-contato">
+        <section class="s">
+          <div class="wrap">
+            <h3 class="t">Contato</h3>
+            <p class="sub">
+              Dúvidas sobre produtos, pedidos ou o curso? Escreva e respondemos
+              pelo WhatsApp.
+            </p>
+            <div class="two">
+              <div class="box" style="margin: 0; max-width: none">
+                <form id="cf" novalidate>
+                  <label for="cn">Seu nome</label
+                  ><input id="cn" autocomplete="name" />
+                  <label for="ca">Assunto</label
+                  ><select id="ca">
+                    <option>Loja e pedidos</option>
+                    <option>Curso</option>
+                    <option>Outro assunto</option>
+                  </select>
+                  <label for="cm">Mensagem</label
+                  ><textarea id="cm" rows="4"></textarea>
+                  <button class="btn sea" style="width: 100%; margin-top: 18px">
+                    Enviar pelo WhatsApp
+                  </button>
+                </form>
+              </div>
+              <div class="perks" style="grid-template-columns: 1fr">
+                <div class="perk">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path
+                      d="M4 12a8 8 0 1 1 3 6.2L4 20l1.2-3.6A8 8 0 0 1 4 12z"
+                    />
+                  </svg>
+                  <div>
+                    <b>WhatsApp</b
+                    ><span>O canal mais rápido para pedidos e inscrições.</span>
+                  </div>
+                </div>
+                <div class="perk">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                  <div>
+                    <b>Horário de atendimento</b
+                    ><span>Segunda a sábado, das 9h às 18h.</span>
+                  </div>
+                </div>
+                <div class="perk">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <rect x="2" y="7" width="13" height="9" rx="1" />
+                    <path d="M15 10h4l3 3v3h-7" />
+                  </svg>
+                  <div>
+                    <b>Envio para todo o Brasil</b
+                    ><span>Informe seu CEP e calculamos o frete.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-<!-- CARRINHO -->
-<div class="view" id="v-carrinho">
- <section class="s"><div class="wrap">
-  <h3 class="t">Carrinho</h3><p class="sub">Seus produtos ficam salvos enquanto você navega pelo site.</p>
-  <div id="cart"></div>
- </div></section>
-</div>
+      <!-- CARRINHO -->
+      <div class="view" id="v-carrinho">
+        <section class="s">
+          <div class="wrap">
+            <h3 class="t">Carrinho</h3>
+            <p class="sub">
+              Seus produtos ficam salvos enquanto você navega pelo site.
+            </p>
+            <div id="cart"></div>
+          </div>
+        </section>
+      </div>
 
-<!-- CHECKOUT -->
-<div class="view" id="v-checkout">
- <section class="s"><div class="wrap" style="max-width:720px">
-  <h3 class="t">Finalizar pedido</h3><p class="sub">Informe o CEP, escolha o frete e a forma de pagamento.</p>
-  <div id="chk"></div>
- </div></section>
-</div>
+      <!-- CHECKOUT -->
+      <div class="view" id="v-checkout">
+        <section class="s">
+          <div class="wrap" style="max-width: 720px">
+            <h3 class="t">Finalizar pedido</h3>
+            <p class="sub">
+              Informe o CEP, escolha o frete e a forma de pagamento.
+            </p>
+            <div id="chk"></div>
+          </div>
+        </section>
+      </div>
 
-<!-- MINHA CONTA -->
-<div class="view" id="v-conta">
- <section class="s"><div class="wrap">
-  <div class="box" id="acct" hidden>
-   <h3 class="t" style="font-size:28px">Olá, <span id="an"></span></h3>
-   <p class="sub" id="ae" style="margin-bottom:18px"></p>
-   <div class="perk" style="margin-bottom:18px"><div><b>Meus pedidos</b><span>Você ainda não fez pedidos. Escolha uma piteira na loja e finalize pelo WhatsApp.</span></div></div>
-   <a class="btn sea" href="#loja" style="display:block;text-align:center">Ir para a loja</a>
-   <button class="btn" id="out" style="width:100%;margin-top:12px;background:var(--baby);color:var(--ink)">Sair da conta</button>
-  </div>
-  <div class="box" id="auth">
-   <h3 class="t" style="font-size:28px">Entrar ou criar conta</h3>
-   <div class="tabs"><button class="on" data-t="in">Entrar</button><button data-t="up">Criar conta</button></div>
-   <form id="f" novalidate>
-    <div id="nm" hidden><label for="n">Nome completo</label><input id="n" autocomplete="name"></div>
-    <label for="e">E-mail</label><input id="e" type="email" autocomplete="email">
-    <label for="p">Senha</label><input id="p" type="password" autocomplete="current-password">
-    <button class="btn sea" style="width:100%;margin-top:18px" id="sb">Entrar</button>
-    <div class="msg" id="msg" role="status"></div>
-   </form>
-  </div>
- </div></section>
-</div>
-</main>
+      <!-- MINHA CONTA -->
+      <div class="view" id="v-conta">
+        <section class="s">
+          <div class="wrap">
+            <div class="box" id="acct" hidden>
+              <h3 class="t" style="font-size: 28px">
+                Olá, <span id="an"></span>
+              </h3>
+              <p class="sub" id="ae" style="margin-bottom: 18px"></p>
+              <div class="perk" style="margin-bottom: 18px">
+                <div>
+                  <b>Meus pedidos</b
+                  ><span
+                    >Você ainda não fez pedidos. Escolha uma piteira na loja e
+                    finalize pelo WhatsApp.</span
+                  >
+                </div>
+              </div>
+              <a
+                class="btn sea"
+                href="#loja"
+                style="display: block; text-align: center"
+                >Ir para a loja</a
+              >
+              <button
+                class="btn"
+                id="out"
+                style="
+                  width: 100%;
+                  margin-top: 12px;
+                  background: var(--baby);
+                  color: var(--ink);
+                "
+              >
+                Sair da conta
+              </button>
+            </div>
+            <div class="box" id="auth">
+              <h3 class="t" style="font-size: 28px">Entrar ou criar conta</h3>
+              <div class="tabs">
+                <button class="on" data-t="in">Entrar</button
+                ><button data-t="up">Criar conta</button>
+              </div>
+              <form id="f" novalidate>
+                <div id="nm" hidden>
+                  <label for="n">Nome completo</label
+                  ><input id="n" autocomplete="name" />
+                </div>
+                <label for="e">E-mail</label
+                ><input id="e" type="email" autocomplete="email" />
+                <label for="p">Senha</label
+                ><input
+                  id="p"
+                  type="password"
+                  autocomplete="current-password"
+                />
+                <button
+                  class="btn sea"
+                  style="width: 100%; margin-top: 18px"
+                  id="sb"
+                >
+                  Entrar
+                </button>
+                <div class="msg" id="msg" role="status"></div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
 
-<footer><div class="wrap">
- <div><b>FLORZEM</b><br>Piteiras de vidro e curso.<br>Venda exclusiva para maiores de 18 anos.</div>
- <div><b>Atendimento</b><br>WhatsApp · Seg a sáb, 9h às 18h</div>
- <div><b>Florzem</b><br><a href="#sobre">Sobre</a> · <a href="#curso">Curso</a> · <a href="#contato">Contato</a> · <a href="#loja">Todos os produtos</a></div>
- <div>© 2026 Florzem. Todos os direitos reservados.</div>
-</div></footer>
+    <footer>
+      <div class="wrap">
+        <div>
+          <b>FLORZEM</b><br />Piteiras de vidro e curso.<br />Venda exclusiva
+          para maiores de 18 anos.
+        </div>
+        <div><b>Atendimento</b><br />WhatsApp · Seg a sáb, 9h às 18h</div>
+        <div>
+          <b>Florzem</b><br /><a href="#sobre">Sobre</a> ·
+          <a href="#curso">Curso</a> · <a href="#contato">Contato</a> ·
+          <a href="#loja">Todos os produtos</a>
+        </div>
+        <div>© 2026 Florzem. Todos os direitos reservados.</div>
+      </div>
+    </footer>
 
-<a class="wa" id="wa" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
- <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 2.4a10.6 10.6 0 1 1-5.4 19.7l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 0 1 16 5.4zm-4 5.3c-.3 0-.7.1-1 .5-.4.4-1.300 1.300-1.300 3.100s1.300 3.600 1.500 3.800c.2.300 2.600 4.100 6.400 5.600 3.100 1.200 3.700 1 4.400.9.700-.1 2.200-.9 2.500-1.800.3-.9.3-1.600.2-1.800-.1-.2-.3-.3-.7-.5l-2.300-1.100c-.3-.1-.5-.2-.8.200l-1 1.200c-.2.300-.4.300-.8.100-.4-.2-1.500-.6-2.900-1.800-1.100-1-1.800-2.200-2-2.600-.2-.4 0-.6.200-.8l.6-.7c.2-.2.200-.4.400-.6.100-.3.100-.5 0-.7l-1-2.400c-.3-.6-.5-.5-.8-.5z"/></svg>
-</a>
+    <a
+      class="wa"
+      id="wa"
+      target="_blank"
+      rel="noopener"
+      aria-label="Falar no WhatsApp"
+    >
+      <svg viewBox="0 0 32 32" fill="#fff">
+        <path
+          d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 2.4a10.6 10.6 0 1 1-5.4 19.7l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 0 1 16 5.4zm-4 5.3c-.3 0-.7.1-1 .5-.4.4-1.300 1.300-1.300 3.100s1.300 3.600 1.500 3.800c.2.300 2.600 4.100 6.400 5.600 3.100 1.200 3.700 1 4.400.9.700-.1 2.200-.9 2.500-1.800.3-.9.3-1.600.2-1.800-.1-.2-.3-.3-.7-.5l-2.300-1.100c-.3-.1-.5-.2-.8.200l-1 1.200c-.2.300-.4.300-.8.100-.4-.2-1.500-.6-2.900-1.800-1.100-1-1.800-2.200-2-2.600-.2-.4 0-.6.200-.8l.6-.7c.2-.2.200-.4.400-.6.100-.3.100-.5 0-.7l-1-2.400c-.3-.6-.5-.5-.8-.5z"
+        />
+      </svg>
+    </a>
 
-<script>
-var WA="5549999999999"; /* troque pelo número real da loja: 55 + DDD + número */
-var P=[
- {c:"basico",top:1,mm:7,n:"Piteira Cristal Fina",d:"Transparente. Clássica e discreta.",p:29.9,o:39.9,a:"#5fc9bd",b:"#e9fbf8",tag:"Mais vendida"},
- {c:"premium",mm:8,n:"Piteira Ondas Oceano",d:"Vidro azul com ondas internas.",p:44.9,a:"#1d6fd1",b:"#7fd0ff"},
- {c:"premium",mm:6,n:"Piteira Espiral Âmbar",d:"Espiral dourada que brilha contra a luz.",p:49.9,a:"#d98410",b:"#ffd27a",tag:"Novidade"},
- {c:"premium",mm:8,n:"Piteira Bolha Lilás",d:"Pontinhos de ar em vidro lilás.",p:42.9,a:"#8b5fd1",b:"#e0ccff"},
- {c:"basico",top:1,mm:5,n:"Piteira Mini Slim",d:"Compacta. Cabe em qualquer bolso.",p:24.9,a:"#8fa9a6",b:"#eef6f5"},
- {c:"kits",mm:[6,7,8],qt:3,n:"Kit 3 Piteiras Cores",d:"Três modelos sortidos com estojo de proteção.",p:99.9,o:129.7,a:"#1f8f86",b:"#a8f0e4",tag:"Kit"},
- {c:"basico",top:1,mm:7,n:"Piteira Fumê Clássica",d:"Vidro fumê discreto.",p:34.9,a:"#7d8f95",b:"#d5dfe2"},
- {c:"kits",mm:7,qt:2,n:"Kit Presente Cristal",d:"Duas piteiras transparentes com estojo.",p:79.9,a:"#5fc9bd",b:"#e9fbf8",tag:"Presente"},
- {c:"acessorios",top:1,n:"Estojo de Proteção",d:"Estojo rígido que protege contra quedas.",p:19.9,a:"#2a78b8",b:"#cfe8fa",ac:1},
- {c:"acessorios",n:"Kit de Limpeza",d:"Escovinhas e líquido para manter o vidro limpo.",p:14.9,a:"#2a78b8",b:"#cfe8fa",ac:1},
- {c:"unicas",mm:8,n:"Peça Única Aurora",d:"Degradê feito à mão. Existe só uma.",p:89.9,a:"#e58fb0",b:"#ffe3a3",tag:"Exclusiva"},
- {c:"unicas",mm:9,n:"Peça Única Maré",d:"Ondas em azul e verde, soprada à mão.",p:119.9,a:"#1d9bb5",b:"#c4f1d9",tag:"Exclusiva"}
-];
-P.forEach(function(x,i){if(!x.ac){x.bc=["Redondo","Achatado","Cônico"][i%3];x.qt=[10,50,100,1000]}});
-var uid=0;
-function art(x){var i="g"+(uid++);if(x.ac)return '<svg viewBox="0 0 400 240" class="art" role="img" aria-label="'+x.n+'"><rect x="110" y="62" width="180" height="116" rx="22" fill="#2a78b8"/><rect x="110" y="104" width="180" height="8" fill="#fff" opacity=".5"/><rect x="186" y="96" width="28" height="24" rx="6" fill="#d98410"/><circle cx="330" cy="46" r="3" fill="#fff"/></svg>';return '<svg viewBox="0 0 400 240" class="art" role="img" aria-label="'+x.n+'"><defs><linearGradient id="'+i+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+x.b+'"/><stop offset=".5" stop-color="'+x.a+'"/><stop offset="1" stop-color="'+x.a+'" stop-opacity=".75"/></linearGradient></defs><g transform="rotate(-18 200 120)"><rect x="40" y="100" width="320" height="38" rx="19" fill="url(#'+i+')" opacity=".95"/><rect x="40" y="100" width="320" height="38" rx="19" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><path d="M80 119c20-14 40 14 60 0s40 14 60 0 40 14 60 0 40 14 60 0" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3"/><rect x="58" y="106" width="270" height="6" rx="3" fill="#fff" opacity=".75"/><ellipse cx="352" cy="119" rx="7" ry="13" fill="#fff" opacity=".25"/></g><circle cx="330" cy="46" r="3" fill="#fff" opacity=".7"/><circle cx="60" cy="190" r="2" fill="#fff" opacity=".6"/></svg>'}
-function R(v){return "R$ "+v.toFixed(2).replace(".",",")}
-function wl(x){return "https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Quero comprar: "+x.n+" ("+R(x.p)+")")}
-var tr=document.getElementById("track"),dt=document.getElementById("dots");
-var B=[{k:"curso",t:"Curso Florzem: aprenda a trabalhar com vidro",d:"Aulas práticas para quem quer começar do zero, com certificado.",b:"Conhecer o curso",h:"curso"},{k:"loja",t:"Piteiras de vidro para todos os estilos",d:"Modelos transparentes, coloridos e kits, com envio para todo o Brasil.",b:"Ir para a loja",h:"loja"},{k:"contato",t:"Tem dúvidas? Fale com a Florzem",d:"Pedidos, curso ou parcerias: atendemos pelo WhatsApp.",b:"Ir para contato",h:"contato"}];
-function scene(k,t){var s={curso:'<path d="M200 66l116 50-116 50-116-50z" fill="#2a78b8"/><path d="M136 146v38c0 14 128 14 128 0v-38l-64 28z" fill="#6fb2e6"/><path d="M316 116v52" stroke="#d98410" stroke-width="6"/><circle cx="316" cy="174" r="9" fill="#d98410"/>',contato:'<rect x="104" y="64" width="192" height="116" rx="28" fill="#2a78b8"/><path d="M148 178l-8 40 44-40z" fill="#2a78b8"/><circle cx="156" cy="122" r="10" fill="#fff"/><circle cx="200" cy="122" r="10" fill="#fff"/><circle cx="244" cy="122" r="10" fill="#fff"/>'};return '<svg viewBox="0 0 400 240" class="art" role="img" aria-label="'+t+'"><circle cx="336" cy="44" r="26" fill="#cfe8fa"/><circle cx="60" cy="196" r="16" fill="#cfe8fa"/>'+s[k]+'</svg>'}
-B.forEach(function(x,i){
- var s=document.createElement("div");s.className="slide";s.tabIndex=0;s.setAttribute("role","group");s.setAttribute("aria-label",(i+1)+" de "+B.length);
- s.innerHTML='<div><h2>'+x.t+'</h2><p>'+x.d+'</p><span class="btn">'+x.b+'</span></div>'+(x.k==="loja"?art(P[2]):scene(x.k,x.t));
- function go(){location.hash=x.h;}
- s.onclick=go;s.onkeydown=function(e){if(e.key==="Enter")go()};tr.appendChild(s);
- var d=document.createElement("button");d.setAttribute("aria-label","Slide "+(i+1));d.onclick=function(){show(i,true)};dt.appendChild(d)});
-var cur=0,n=B.length,timer,pos=0;
-var c0=tr.firstChild.cloneNode(true);c0.setAttribute("aria-hidden","true");c0.tabIndex=-1;c0.onclick=function(){location.hash=B[0].h};tr.appendChild(c0);
-function move(p,a){tr.style.transition=a?"transform 1.6s cubic-bezier(.65,0,.35,1)":"none";tr.style.transform="translateX(-"+p*100+"%)";pos=p}
-tr.addEventListener("transitionend",function(e){if(e.target===tr&&pos===n)move(0,false)});
-function show(i,u){if(pos===n){move(0,false);tr.offsetWidth}
- if(i>=n){move(n,true);cur=0}else if(i<0){move(n,false);tr.offsetWidth;move(n-1,true);cur=n-1}else{move(i,true);cur=i}
- [].forEach.call(dt.children,function(d,k){d.className=k===cur?"on":""});if(u)reset()}
-function reset(){clearInterval(timer);timer=setInterval(function(){show(cur+1)},6500)}
-document.querySelector(".prev").onclick=function(){show(cur-1,true)};
-document.querySelector(".next").onclick=function(){show(cur+1,true)};
-var car=document.querySelector(".car");
-document.addEventListener("visibilitychange",function(){if(!document.hidden)reset()});
-reset();show(0);
-function card(x){return '<article class="card"><div class="pw">'+(x.tag?'<span class="tag">'+x.tag+'</span>':'')+'<div class="pic">'+art(x)+'</div></div><div class="b"><h4>'+x.n+'</h4><p>'+x.d+'</p>'+(x.mm?'<small style="color:var(--muted)">Bocal: '+x.bc+' · Espessura: '+[].concat(x.mm).join(", ")+' mm<br>Quantidades: '+x.qt.join(", ")+'</small>':'')+'<div class="row"><b>'+R(x.p)+'</b><button type="button" class="btn sea" style="padding:9px 18px;font-size:14px" data-add="'+P.indexOf(x)+'">Comprar</button></div></div></article>'}
-function bycat(c){return P.filter(function(x){return x.c===c})}
-document.getElementById("g-premium").innerHTML=bycat("premium").map(card).join("");
-document.getElementById("g-kits").innerHTML=bycat("kits").map(card).join("");
-document.getElementById("g-top").innerHTML=P.filter(function(x){return x.top}).map(card).join("");
+    <script>
+      var WA =
+        "5549999999999"; /* troque pelo número real da loja: 55 + DDD + número */
+      var P = [
+        {
+          c: "basico",
+          top: 1,
+          mm: 7,
+          n: "Piteira Cristal Fina",
+          d: "Transparente. Clássica e discreta.",
+          p: 29.9,
+          o: 39.9,
+          a: "#5fc9bd",
+          b: "#e9fbf8",
+          tag: "Mais vendida",
+        },
+        {
+          c: "premium",
+          mm: 8,
+          n: "Piteira Ondas Oceano",
+          d: "Vidro azul com ondas internas.",
+          p: 44.9,
+          a: "#1d6fd1",
+          b: "#7fd0ff",
+        },
+        {
+          c: "premium",
+          mm: 6,
+          n: "Piteira Espiral Âmbar",
+          d: "Espiral dourada que brilha contra a luz.",
+          p: 49.9,
+          a: "#d98410",
+          b: "#ffd27a",
+          tag: "Novidade",
+        },
+        {
+          c: "premium",
+          mm: 8,
+          n: "Piteira Bolha Lilás",
+          d: "Pontinhos de ar em vidro lilás.",
+          p: 42.9,
+          a: "#8b5fd1",
+          b: "#e0ccff",
+        },
+        {
+          c: "basico",
+          top: 1,
+          mm: 5,
+          n: "Piteira Mini Slim",
+          d: "Compacta. Cabe em qualquer bolso.",
+          p: 24.9,
+          a: "#8fa9a6",
+          b: "#eef6f5",
+        },
+        {
+          c: "kits",
+          mm: [6, 7, 8],
+          qt: 3,
+          n: "Kit 3 Piteiras Cores",
+          d: "Três modelos sortidos com estojo de proteção.",
+          p: 99.9,
+          o: 129.7,
+          a: "#1f8f86",
+          b: "#a8f0e4",
+          tag: "Kit",
+        },
+        {
+          c: "basico",
+          top: 1,
+          mm: 7,
+          n: "Piteira Fumê Clássica",
+          d: "Vidro fumê discreto.",
+          p: 34.9,
+          a: "#7d8f95",
+          b: "#d5dfe2",
+        },
+        {
+          c: "kits",
+          mm: 7,
+          qt: 2,
+          n: "Kit Presente Cristal",
+          d: "Duas piteiras transparentes com estojo.",
+          p: 79.9,
+          a: "#5fc9bd",
+          b: "#e9fbf8",
+          tag: "Presente",
+        },
+        {
+          c: "acessorios",
+          top: 1,
+          n: "Estojo de Proteção",
+          d: "Estojo rígido que protege contra quedas.",
+          p: 19.9,
+          a: "#2a78b8",
+          b: "#cfe8fa",
+          ac: 1,
+        },
+        {
+          c: "acessorios",
+          n: "Kit de Limpeza",
+          d: "Escovinhas e líquido para manter o vidro limpo.",
+          p: 14.9,
+          a: "#2a78b8",
+          b: "#cfe8fa",
+          ac: 1,
+        },
+        {
+          c: "unicas",
+          mm: 8,
+          n: "Peça Única Aurora",
+          d: "Degradê feito à mão. Existe só uma.",
+          p: 89.9,
+          a: "#e58fb0",
+          b: "#ffe3a3",
+          tag: "Exclusiva",
+        },
+        {
+          c: "unicas",
+          mm: 9,
+          n: "Peça Única Maré",
+          d: "Ondas em azul e verde, soprada à mão.",
+          p: 119.9,
+          a: "#1d9bb5",
+          b: "#c4f1d9",
+          tag: "Exclusiva",
+        },
+      ];
+      P.forEach(function (x, i) {
+        if (!x.ac) {
+          x.bc = ["Redondo", "Achatado", "Cônico"][i % 3];
+          x.qt = [10, 50, 100, 1000];
+        }
+      });
+      var uid = 0;
+      function art(x) {
+        var i = "g" + uid++;
+        if (x.ac)
+          return (
+            '<svg viewBox="0 0 400 240" class="art" role="img" aria-label="' +
+            x.n +
+            '"><rect x="110" y="62" width="180" height="116" rx="22" fill="#2a78b8"/><rect x="110" y="104" width="180" height="8" fill="#fff" opacity=".5"/><rect x="186" y="96" width="28" height="24" rx="6" fill="#d98410"/><circle cx="330" cy="46" r="3" fill="#fff"/></svg>'
+          );
+        return (
+          '<svg viewBox="0 0 400 240" class="art" role="img" aria-label="' +
+          x.n +
+          '"><defs><linearGradient id="' +
+          i +
+          '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' +
+          x.b +
+          '"/><stop offset=".5" stop-color="' +
+          x.a +
+          '"/><stop offset="1" stop-color="' +
+          x.a +
+          '" stop-opacity=".75"/></linearGradient></defs><g transform="rotate(-18 200 120)"><rect x="40" y="100" width="320" height="38" rx="19" fill="url(#' +
+          i +
+          ')" opacity=".95"/><rect x="40" y="100" width="320" height="38" rx="19" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><path d="M80 119c20-14 40 14 60 0s40 14 60 0 40 14 60 0 40 14 60 0" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3"/><rect x="58" y="106" width="270" height="6" rx="3" fill="#fff" opacity=".75"/><ellipse cx="352" cy="119" rx="7" ry="13" fill="#fff" opacity=".25"/></g><circle cx="330" cy="46" r="3" fill="#fff" opacity=".7"/><circle cx="60" cy="190" r="2" fill="#fff" opacity=".6"/></svg>'
+        );
+      }
+      function R(v) {
+        return "R$ " + v.toFixed(2).replace(".", ",");
+      }
+      function wl(x) {
+        return (
+          "https://wa.me/" +
+          WA +
+          "?text=" +
+          encodeURIComponent("Olá! Quero comprar: " + x.n + " (" + R(x.p) + ")")
+        );
+      }
+      var tr = document.getElementById("track"),
+        dt = document.getElementById("dots");
+      var B = [
+        {
+          k: "curso",
+          t: "Curso Florzem: aprenda a trabalhar com vidro",
+          d: "Aulas práticas para quem quer começar do zero, com certificado.",
+          b: "Conhecer o curso",
+          h: "curso",
+        },
+        {
+          k: "loja",
+          t: "Piteiras de vidro para todos os estilos",
+          d: "Modelos transparentes, coloridos e kits, com envio para todo o Brasil.",
+          b: "Ir para a loja",
+          h: "loja",
+        },
+        {
+          k: "contato",
+          t: "Tem dúvidas? Fale com a Florzem",
+          d: "Pedidos, curso ou parcerias: atendemos pelo WhatsApp.",
+          b: "Ir para contato",
+          h: "contato",
+        },
+      ];
+      function scene(k, t) {
+        var s = {
+          curso:
+            '<path d="M200 66l116 50-116 50-116-50z" fill="#2a78b8"/><path d="M136 146v38c0 14 128 14 128 0v-38l-64 28z" fill="#6fb2e6"/><path d="M316 116v52" stroke="#d98410" stroke-width="6"/><circle cx="316" cy="174" r="9" fill="#d98410"/>',
+          contato:
+            '<rect x="104" y="64" width="192" height="116" rx="28" fill="#2a78b8"/><path d="M148 178l-8 40 44-40z" fill="#2a78b8"/><circle cx="156" cy="122" r="10" fill="#fff"/><circle cx="200" cy="122" r="10" fill="#fff"/><circle cx="244" cy="122" r="10" fill="#fff"/>',
+        };
+        return (
+          '<svg viewBox="0 0 400 240" class="art" role="img" aria-label="' +
+          t +
+          '"><circle cx="336" cy="44" r="26" fill="#cfe8fa"/><circle cx="60" cy="196" r="16" fill="#cfe8fa"/>' +
+          s[k] +
+          "</svg>"
+        );
+      }
+      B.forEach(function (x, i) {
+        var s = document.createElement("div");
+        s.className = "slide";
+        s.tabIndex = 0;
+        s.setAttribute("role", "group");
+        s.setAttribute("aria-label", i + 1 + " de " + B.length);
+        s.innerHTML =
+          "<div><h2>" +
+          x.t +
+          "</h2><p>" +
+          x.d +
+          '</p><span class="btn">' +
+          x.b +
+          "</span></div>" +
+          (x.k === "loja" ? art(P[2]) : scene(x.k, x.t));
+        function go() {
+          location.hash = x.h;
+        }
+        s.onclick = go;
+        s.onkeydown = function (e) {
+          if (e.key === "Enter") go();
+        };
+        tr.appendChild(s);
+        var d = document.createElement("button");
+        d.setAttribute("aria-label", "Slide " + (i + 1));
+        d.onclick = function () {
+          show(i, true);
+        };
+        dt.appendChild(d);
+      });
+      var cur = 0,
+        n = B.length,
+        timer,
+        pos = 0;
+      var c0 = tr.firstChild.cloneNode(true);
+      c0.setAttribute("aria-hidden", "true");
+      c0.tabIndex = -1;
+      c0.onclick = function () {
+        location.hash = B[0].h;
+      };
+      tr.appendChild(c0);
+      function move(p, a) {
+        tr.style.transition = a
+          ? "transform 1.6s cubic-bezier(.65,0,.35,1)"
+          : "none";
+        tr.style.transform = "translateX(-" + p * 100 + "%)";
+        pos = p;
+      }
+      tr.addEventListener("transitionend", function (e) {
+        if (e.target === tr && pos === n) move(0, false);
+      });
+      function show(i, u) {
+        if (pos === n) {
+          move(0, false);
+          tr.offsetWidth;
+        }
+        if (i >= n) {
+          move(n, true);
+          cur = 0;
+        } else if (i < 0) {
+          move(n, false);
+          tr.offsetWidth;
+          move(n - 1, true);
+          cur = n - 1;
+        } else {
+          move(i, true);
+          cur = i;
+        }
+        [].forEach.call(dt.children, function (d, k) {
+          d.className = k === cur ? "on" : "";
+        });
+        if (u) reset();
+      }
+      function reset() {
+        clearInterval(timer);
+        timer = setInterval(function () {
+          show(cur + 1);
+        }, 6500);
+      }
+      document.querySelector(".prev").onclick = function () {
+        show(cur - 1, true);
+      };
+      document.querySelector(".next").onclick = function () {
+        show(cur + 1, true);
+      };
+      var car = document.querySelector(".car");
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden) reset();
+      });
+      reset();
+      show(0);
+      function card(x) {
+        return (
+          '<article class="card"><div class="pw">' +
+          (x.tag ? '<span class="tag">' + x.tag + "</span>" : "") +
+          '<div class="pic">' +
+          art(x) +
+          '</div></div><div class="b"><h4>' +
+          x.n +
+          "</h4><p>" +
+          x.d +
+          "</p>" +
+          (x.mm
+            ? '<small style="color:var(--muted)">Bocal: ' +
+              x.bc +
+              " · Espessura: " +
+              [].concat(x.mm).join(", ") +
+              " mm<br>Quantidades: " +
+              x.qt.join(", ") +
+              "</small>"
+            : "") +
+          '<div class="row"><b>' +
+          R(x.p) +
+          '</b><button type="button" class="btn sea" style="padding:9px 18px;font-size:14px" data-add="' +
+          P.indexOf(x) +
+          '">Comprar</button></div></div></article>'
+        );
+      }
+      function bycat(c) {
+        return P.filter(function (x) {
+          return x.c === c;
+        });
+      }
+      document.getElementById("g-premium").innerHTML = bycat("premium")
+        .map(card)
+        .join("");
+      document.getElementById("g-kits").innerHTML = bycat("kits")
+        .map(card)
+        .join("");
+      document.getElementById("g-top").innerHTML = P.filter(function (x) {
+        return x.top;
+      })
+        .map(card)
+        .join("");
 
-var base="https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Vim pelo site da Florzem.");
-document.getElementById("wa").href=base;document.getElementById("cta-wa").href=base;
-document.getElementById("cu-wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Quero me inscrever no curso da Florzem.");
-document.getElementById("cf").onsubmit=function(e){e.preventDefault();var t="Olá! Meu nome é "+(document.getElementById("cn").value||"(sem nome)")+". Assunto: "+document.getElementById("ca").value+". "+document.getElementById("cm").value;window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank","noopener")};
-var CATS={acessorios:["Acessórios","Estojos, kits de limpeza e tudo para cuidar das suas piteiras."],basico:["Básico","Modelos essenciais, simples e com ótimo preço."],premium:["Premium","Vidro colorido com acabamento especial."],kits:["Kits","Combos prontos para usar ou presentear."],unicas:["Peças Únicas","Feitas à mão em uma única unidade. Quando acaba, não repete."]};
-function nz(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
-function srch(){var q=document.getElementById("q").value.trim(),r=P.filter(function(x){return nz(x.n+" "+x.d+" "+CATS[x.c][0]).indexOf(nz(q))>-1});r=fl(r);
- document.getElementById("st").textContent=q?"Resultados para “"+q+"”":"Buscar produtos";
- document.getElementById("sc").textContent=r.length+(r.length===1?" produto encontrado":" produtos encontrados");
- document.getElementById("g-busca").innerHTML=r.length?r.map(card).join(""):'<p class="sub">Nenhum produto encontrado. Tente outro termo ou fale com a gente no WhatsApp.</p>'}
-function route(keep){var h=(location.hash||"#inicio").slice(1),v=h;
- if(CATS[h]){v="cat";document.getElementById("ct").textContent=CATS[h][0];document.getElementById("cs").textContent=CATS[h][1];document.getElementById("g-cat").innerHTML=gl(P.filter(function(x){return x.c===h}))}
- else if(["inicio","loja","curso","contato","conta","busca","sobre","carrinho","checkout"].indexOf(h)<0)v=h="inicio";
- if(h==="busca")srch();if(h==="carrinho")rc();if(h==="checkout")rk();
- [].forEach.call(document.querySelectorAll(".view"),function(e){e.classList.toggle("on",e.id==="v-"+v)});
- [].forEach.call(document.querySelectorAll("nav a"),function(a){a.classList.toggle("on",a.dataset.v===h)});if(h==="loja")document.getElementById("g-loja").innerHTML=gl(P);[].forEach.call(document.querySelectorAll(".flt input"),function(i){var k=i.dataset.k;i.checked=(k==="mm"?F:k==="qt"?Q:BC).indexOf(k==="bc"?i.value:+i.value)>-1});if(keep!==1)scrollTo(0,0)}
-var C=ld("fz_cart")||{};
-function cn(){return P.reduce(function(t,x){return t+(C[x.n]||0)},0)}
-function cs(){document.getElementById("cc").textContent=cn();sv("fz_cart",C)}
-function cadd(i,d){var x=P[i];if(!x)return;var q=(C[x.n]||0)+d;if(q<=0)delete C[x.n];else C[x.n]=Math.min(q,9999);cs();if(location.hash==="#carrinho")rc()}
-function rc(){var el=document.getElementById("cart"),t=0,h="";
- P.forEach(function(x,i){var q=C[x.n];if(!q)return;t+=q*x.p;h+='<div class="ci"><div class="cn"><b>'+x.n+'</b><span>'+R(x.p)+' cada</span></div><div class="cq"><button type="button" data-i="'+i+'" data-d="-1" aria-label="Diminuir">−</button><b>'+q+'</b><button type="button" data-i="'+i+'" data-d="1" aria-label="Aumentar">+</button></div><b class="ct">'+R(q*x.p)+'</b><button type="button" class="cx" data-i="'+i+'" data-d="-9999">Remover</button></div>'});
- el.innerHTML=h?h+'<div class="sum"><div><span class="sub" style="margin:0">Total</span><br><b>'+R(t)+'</b></div><div><button type="button" class="btn" id="cgo">Finalizar pedido</button> <button type="button" class="cx" id="cclr">Limpar carrinho</button></div></div>':'<p class="sub">Seu carrinho está vazio.</p><a class="btn sea" href="#loja">Ir para a loja</a>'}
-document.addEventListener("click",function(e){var b=e.target.closest("[data-add],[data-d],#cgo,#cclr,#kok");if(!b)return;
- if(b.dataset.add!==undefined){cadd(+b.dataset.add,1);b.textContent="Adicionado ✓";setTimeout(function(){b.textContent="Comprar"},1200)}
- else if(b.dataset.d)cadd(+b.dataset.i,+b.dataset.d);
- else if(b.id==="cclr"){C={};cs();rc()}
- else if(b.id==="cgo")location.hash="checkout";else if(b.id==="kok"&&!b.disabled){var o=K.opts[K.fr],t=0,l=P.filter(function(x){return C[x.n]}).map(function(x){t+=C[x.n]*x.p;return C[x.n]+"x "+x.n+" ("+R(x.p)+")"});window.open("https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Quero finalizar este pedido:\n"+l.join("\n")+"\nCEP: "+K.cep+"\nFrete: "+o.n+" ("+R(o.p)+")\nPagamento: "+K.pg+"\nTotal: "+R(t+o.p)),"_blank","noopener")}});
-cs();
-var K={cep:"",fr:null,opts:[],pg:null,sub:0};
-var PG=[["Pix","Pagamento instantâneo"],["Cartão de crédito","Pague com o cartão"],["Boleto bancário","Compensação em até 3 dias úteis"]];
-function kfr(c){var d=+c[0],z=d>=8?0:d<=3?1:2,p=[[19.9,34.9],[24.9,42.9],[34.9,59.9]][z],t=[["3 a 7","1 a 3"],["5 a 9","2 a 4"],["8 a 15","4 a 7"]][z];return [{n:"PAC",p:p[0],d:t[0]+" dias úteis"},{n:"SEDEX",p:p[1],d:t[1]+" dias úteis"}]}
-function kf(){var el=document.getElementById("kfr");
- if(K.cep.length<8){K.opts=[];K.fr=null;el.innerHTML='<p class="sub" style="margin:0">Informe o CEP para ver as opções de frete.</p>';return}
- K.opts=kfr(K.cep);el.innerHTML=K.opts.map(function(o,i){return '<label class="opt"><input type="radio" name="fr" value="'+i+'"'+(K.fr===i?" checked":"")+'><span>'+o.n+' · '+R(o.p)+'<small>Entrega em '+o.d+'</small></span></label>'}).join("")}
-function ku(){var o=K.fr!==null&&K.opts[K.fr],f=o?o.p:0,ok=o&&K.pg;
- document.getElementById("ksum").innerHTML='<div>Subtotal: '+R(K.sub)+'<br>Frete: '+(o?R(o.p):"a calcular")+'<br><b>Total: '+R(K.sub+f)+'</b></div><div><button type="button" class="btn" id="kok"'+(ok?"":" disabled")+'>Confirmar pedido</button></div>'}
-function rk(){var el=document.getElementById("chk"),s=0;P.forEach(function(x){s+=(C[x.n]||0)*x.p});K.sub=s;
- if(!s){el.innerHTML='<p class="sub">Seu carrinho está vazio.</p><a class="btn sea" href="#loja">Ir para a loja</a>';return}
- el.innerHTML='<h4 class="kh">1. CEP de entrega</h4><input id="kcep" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000" aria-label="CEP" style="max-width:220px"><h4 class="kh">2. Frete</h4><div id="kfr"></div><h4 class="kh">3. Forma de pagamento</h4>'+PG.map(function(p){return '<label class="opt"><input type="radio" name="pg" value="'+p[0]+'"'+(K.pg===p[0]?" checked":"")+'><span>'+p[0]+'<small>'+p[1]+'</small></span></label>'}).join("")+'<div class="sum" id="ksum"></div><p style="margin-top:12px"><a href="#carrinho" class="cx">Voltar ao carrinho</a></p>';
- var c=document.getElementById("kcep");c.value=K.cep.length>5?K.cep.slice(0,5)+"-"+K.cep.slice(5):K.cep;kf();ku()}
-document.addEventListener("input",function(e){if(e.target.id!=="kcep")return;var d=e.target.value.replace(/\D/g,"").slice(0,8);K.cep=d;K.fr=null;e.target.value=d.length>5?d.slice(0,5)+"-"+d.slice(5):d;kf();ku()});
-document.addEventListener("change",function(e){var t=e.target;if(t.name==="fr")K.fr=+t.value;else if(t.name==="pg")K.pg=t.value;else return;ku()});
-var F=[],Q=[],BC=[];
-function qok(a){return Q.some(function(k){return a.indexOf(k)>-1})}
-function fl(a){return a.filter(function(x){return(!F.length||(x.mm&&[].concat(x.mm).some(function(m){return F.indexOf(m)>-1})))&&(!Q.length||(x.qt&&qok(x.qt)))&&(!BC.length||BC.indexOf(x.bc)>-1)})}
-function gl(a){var r=fl(a);return r.length?r.map(card).join(""):'<p class="sub">Nenhum produto com esses filtros. Ajuste ou limpe os filtros para ver todos.</p>'}
-function fui(){var cb=function(k,v,t){return '<label><input type="checkbox" data-k="'+k+'" value="'+v+'"> '+t+'</label>'};
- var h='<h5>Bocal</h5>'+["Redondo","Achatado","Cônico"].map(function(b){return cb("bc",b,b)}).join("")+'<h5>Espessura</h5>'+[5,6,7,8,9].map(function(m){return cb("mm",m,m+" mm")}).join("")+'<h5>Quantidade</h5>'+[10,50,100,1000].map(function(q){return cb("qt",q,q+" unidades")}).join("")+'<button type="button" class="fx">Limpar filtros</button>';
- [].forEach.call(document.querySelectorAll(".flt"),function(f){f.innerHTML=h;[].forEach.call(f.querySelectorAll("input"),function(i){i[i.type==="checkbox"?"onchange":"oninput"]=function(){var k=i.dataset.k;var A=k==="mm"?F:k==="qt"?Q:BC,m=k==="bc"?i.value:+i.value,j=A.indexOf(m);if(j>-1)A.splice(j,1);else A.push(m);route(1)}});f.querySelector(".fx").onclick=function(){F=[];Q=[];BC=[];route(1)}})}
-fui();
-var qi=document.getElementById("q");
-function goq(){if(qi.value.trim()){if(location.hash!=="#busca")location.hash="busca";else srch()}else if(location.hash==="#busca")location.hash="inicio"}
-qi.oninput=goq;document.getElementById("sf").onsubmit=function(e){e.preventDefault();goq()};
-addEventListener("hashchange",route);route();
-var mode="in",tabs=document.querySelectorAll(".tabs button");
-[].forEach.call(tabs,function(b){b.onclick=function(){mode=b.dataset.t;[].forEach.call(tabs,function(t){t.classList.toggle("on",t===b)});document.getElementById("nm").hidden=mode==="in";document.getElementById("sb").textContent=mode==="in"?"Entrar":"Criar conta";document.getElementById("msg").textContent=""}});
-function ld(k){try{return JSON.parse(localStorage.getItem(k))}catch(x){return null}}
-function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(x){return false}}
-function hs(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){return [].map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("")})}
-function paint(){var u=ld("fz_session");document.getElementById("acct").hidden=!u;document.getElementById("auth").hidden=!!u;if(u){document.getElementById("an").textContent=u.name.split(" ")[0];document.getElementById("ae").textContent=u.email}}
-document.getElementById("out").onclick=function(){try{localStorage.removeItem("fz_session")}catch(x){}paint()};
-document.getElementById("f").onsubmit=function(e){e.preventDefault();var m=document.getElementById("msg"),em=document.getElementById("e").value.trim().toLowerCase(),pw=document.getElementById("p").value,nm=document.getElementById("n").value.trim();
- function err(t){m.style.color="#c0392b";m.textContent=t}m.style.color="";m.textContent="";
- if(!em||!pw)return err("Preencha e-mail e senha para continuar.");
- if(pw.length<6)return err("A senha precisa ter pelo menos 6 caracteres.");
- if(mode==="up"&&!nm)return err("Informe seu nome completo.");
- if(!(window.crypto&&crypto.subtle))return err("Seu navegador não permite criar contas aqui.");
- hs(pw).then(function(h){var us=ld("fz_users")||{};
-  if(mode==="up"){if(us[em])return err("Este e-mail já tem cadastro. Use a aba Entrar.");us[em]={name:nm,h:h};if(!sv("fz_users",us))return err("Não foi possível salvar o cadastro neste navegador.")}
-  else if(!us[em]||us[em].h!==h)return err("E-mail ou senha incorretos.");
-  if(!sv("fz_session",{name:us[em].name,email:em}))return err("Não foi possível iniciar a sessão neste navegador.");
-  document.getElementById("f").reset();paint()})};
-paint();
-</script>
-</body>
+      var base =
+        "https://wa.me/" +
+        WA +
+        "?text=" +
+        encodeURIComponent("Olá! Vim pelo site da Florzem.");
+      document.getElementById("wa").href = base;
+      document.getElementById("cta-wa").href = base;
+      document.getElementById("cu-wa").href =
+        "https://wa.me/" +
+        WA +
+        "?text=" +
+        encodeURIComponent("Olá! Quero me inscrever no curso da Florzem.");
+      document.getElementById("cf").onsubmit = function (e) {
+        e.preventDefault();
+        var t =
+          "Olá! Meu nome é " +
+          (document.getElementById("cn").value || "(sem nome)") +
+          ". Assunto: " +
+          document.getElementById("ca").value +
+          ". " +
+          document.getElementById("cm").value;
+        window.open(
+          "https://wa.me/" + WA + "?text=" + encodeURIComponent(t),
+          "_blank",
+          "noopener",
+        );
+      };
+      var CATS = {
+        acessorios: [
+          "Acessórios",
+          "Estojos, kits de limpeza e tudo para cuidar das suas piteiras.",
+        ],
+        basico: ["Básico", "Modelos essenciais, simples e com ótimo preço."],
+        premium: ["Premium", "Vidro colorido com acabamento especial."],
+        kits: ["Kits", "Combos prontos para usar ou presentear."],
+        unicas: [
+          "Peças Únicas",
+          "Feitas à mão em uma única unidade. Quando acaba, não repete.",
+        ],
+      };
+      function nz(s) {
+        return s
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+      }
+      function srch() {
+        var q = document.getElementById("q").value.trim(),
+          r = P.filter(function (x) {
+            return nz(x.n + " " + x.d + " " + CATS[x.c][0]).indexOf(nz(q)) > -1;
+          });
+        r = fl(r);
+        document.getElementById("st").textContent = q
+          ? "Resultados para “" + q + "”"
+          : "Buscar produtos";
+        document.getElementById("sc").textContent =
+          r.length +
+          (r.length === 1 ? " produto encontrado" : " produtos encontrados");
+        document.getElementById("g-busca").innerHTML = r.length
+          ? r.map(card).join("")
+          : '<p class="sub">Nenhum produto encontrado. Tente outro termo ou fale com a gente no WhatsApp.</p>';
+      }
+      function route(keep) {
+        var h = (location.hash || "#inicio").slice(1),
+          v = h;
+        if (CATS[h]) {
+          v = "cat";
+          document.getElementById("ct").textContent = CATS[h][0];
+          document.getElementById("cs").textContent = CATS[h][1];
+          document.getElementById("g-cat").innerHTML = gl(
+            P.filter(function (x) {
+              return x.c === h;
+            }),
+          );
+        } else if (
+          [
+            "inicio",
+            "loja",
+            "curso",
+            "contato",
+            "conta",
+            "busca",
+            "sobre",
+            "carrinho",
+            "checkout",
+          ].indexOf(h) < 0
+        )
+          v = h = "inicio";
+        if (h === "busca") srch();
+        if (h === "carrinho") rc();
+        if (h === "checkout") rk();
+        [].forEach.call(document.querySelectorAll(".view"), function (e) {
+          e.classList.toggle("on", e.id === "v-" + v);
+        });
+        [].forEach.call(document.querySelectorAll("nav a"), function (a) {
+          a.classList.toggle("on", a.dataset.v === h);
+        });
+        if (h === "loja") document.getElementById("g-loja").innerHTML = gl(P);
+        [].forEach.call(document.querySelectorAll(".flt input"), function (i) {
+          var k = i.dataset.k;
+          i.checked =
+            (k === "mm" ? F : k === "qt" ? Q : BC).indexOf(
+              k === "bc" ? i.value : +i.value,
+            ) > -1;
+        });
+        if (keep !== 1) scrollTo(0, 0);
+      }
+      var C = ld("fz_cart") || {};
+      function cn() {
+        return P.reduce(function (t, x) {
+          return t + (C[x.n] || 0);
+        }, 0);
+      }
+      function cs() {
+        document.getElementById("cc").textContent = cn();
+        sv("fz_cart", C);
+      }
+      function cadd(i, d) {
+        var x = P[i];
+        if (!x) return;
+        var q = (C[x.n] || 0) + d;
+        if (q <= 0) delete C[x.n];
+        else C[x.n] = Math.min(q, 9999);
+        cs();
+        if (location.hash === "#carrinho") rc();
+      }
+      function rc() {
+        var el = document.getElementById("cart"),
+          t = 0,
+          h = "";
+        P.forEach(function (x, i) {
+          var q = C[x.n];
+          if (!q) return;
+          t += q * x.p;
+          h +=
+            '<div class="ci"><div class="cn"><b>' +
+            x.n +
+            "</b><span>" +
+            R(x.p) +
+            ' cada</span></div><div class="cq"><button type="button" data-i="' +
+            i +
+            '" data-d="-1" aria-label="Diminuir">−</button><b>' +
+            q +
+            '</b><button type="button" data-i="' +
+            i +
+            '" data-d="1" aria-label="Aumentar">+</button></div><b class="ct">' +
+            R(q * x.p) +
+            '</b><button type="button" class="cx" data-i="' +
+            i +
+            '" data-d="-9999">Remover</button></div>';
+        });
+        el.innerHTML = h
+          ? h +
+            '<div class="sum"><div><span class="sub" style="margin:0">Total</span><br><b>' +
+            R(t) +
+            '</b></div><div><button type="button" class="btn" id="cgo">Finalizar pedido</button> <button type="button" class="cx" id="cclr">Limpar carrinho</button></div></div>'
+          : '<p class="sub">Seu carrinho está vazio.</p><a class="btn sea" href="#loja">Ir para a loja</a>';
+      }
+      document.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-add],[data-d],#cgo,#cclr,#kok");
+        if (!b) return;
+        if (b.dataset.add !== undefined) {
+          cadd(+b.dataset.add, 1);
+          b.textContent = "Adicionado ✓";
+          setTimeout(function () {
+            b.textContent = "Comprar";
+          }, 1200);
+        } else if (b.dataset.d) cadd(+b.dataset.i, +b.dataset.d);
+        else if (b.id === "cclr") {
+          C = {};
+          cs();
+          rc();
+        } else if (b.id === "cgo") location.hash = "checkout";
+        else if (b.id === "kok" && !b.disabled) {
+          var o = K.opts[K.fr],
+            t = 0,
+            l = P.filter(function (x) {
+              return C[x.n];
+            }).map(function (x) {
+              t += C[x.n] * x.p;
+              return C[x.n] + "x " + x.n + " (" + R(x.p) + ")";
+            });
+          window.open(
+            "https://wa.me/" +
+              WA +
+              "?text=" +
+              encodeURIComponent(
+                "Olá! Quero finalizar este pedido:\n" +
+                  l.join("\n") +
+                  "\nCEP: " +
+                  K.cep +
+                  "\nFrete: " +
+                  o.n +
+                  " (" +
+                  R(o.p) +
+                  ")\nPagamento: " +
+                  K.pg +
+                  "\nTotal: " +
+                  R(t + o.p),
+              ),
+            "_blank",
+            "noopener",
+          );
+        }
+      });
+      cs();
+      var K = { cep: "", fr: null, opts: [], pg: null, sub: 0 };
+      var PG = [
+        ["Pix", "Pagamento instantâneo"],
+        ["Cartão de crédito", "Pague com o cartão"],
+        ["Boleto bancário", "Compensação em até 3 dias úteis"],
+      ];
+      function kfr(c) {
+        var d = +c[0],
+          z = d >= 8 ? 0 : d <= 3 ? 1 : 2,
+          p = [
+            [19.9, 34.9],
+            [24.9, 42.9],
+            [34.9, 59.9],
+          ][z],
+          t = [
+            ["3 a 7", "1 a 3"],
+            ["5 a 9", "2 a 4"],
+            ["8 a 15", "4 a 7"],
+          ][z];
+        return [
+          { n: "PAC", p: p[0], d: t[0] + " dias úteis" },
+          { n: "SEDEX", p: p[1], d: t[1] + " dias úteis" },
+        ];
+      }
+      function kf() {
+        var el = document.getElementById("kfr");
+        if (K.cep.length < 8) {
+          K.opts = [];
+          K.fr = null;
+          el.innerHTML =
+            '<p class="sub" style="margin:0">Informe o CEP para ver as opções de frete.</p>';
+          return;
+        }
+        K.opts = kfr(K.cep);
+        el.innerHTML = K.opts
+          .map(function (o, i) {
+            return (
+              '<label class="opt"><input type="radio" name="fr" value="' +
+              i +
+              '"' +
+              (K.fr === i ? " checked" : "") +
+              "><span>" +
+              o.n +
+              " · " +
+              R(o.p) +
+              "<small>Entrega em " +
+              o.d +
+              "</small></span></label>"
+            );
+          })
+          .join("");
+      }
+      function ku() {
+        var o = K.fr !== null && K.opts[K.fr],
+          f = o ? o.p : 0,
+          ok = o && K.pg;
+        document.getElementById("ksum").innerHTML =
+          "<div>Subtotal: " +
+          R(K.sub) +
+          "<br>Frete: " +
+          (o ? R(o.p) : "a calcular") +
+          "<br><b>Total: " +
+          R(K.sub + f) +
+          '</b></div><div><button type="button" class="btn" id="kok"' +
+          (ok ? "" : " disabled") +
+          ">Confirmar pedido</button></div>";
+      }
+      function rk() {
+        var el = document.getElementById("chk"),
+          s = 0;
+        P.forEach(function (x) {
+          s += (C[x.n] || 0) * x.p;
+        });
+        K.sub = s;
+        if (!s) {
+          el.innerHTML =
+            '<p class="sub">Seu carrinho está vazio.</p><a class="btn sea" href="#loja">Ir para a loja</a>';
+          return;
+        }
+        el.innerHTML =
+          '<h4 class="kh">1. CEP de entrega</h4><input id="kcep" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000" aria-label="CEP" style="max-width:220px"><h4 class="kh">2. Frete</h4><div id="kfr"></div><h4 class="kh">3. Forma de pagamento</h4>' +
+          PG.map(function (p) {
+            return (
+              '<label class="opt"><input type="radio" name="pg" value="' +
+              p[0] +
+              '"' +
+              (K.pg === p[0] ? " checked" : "") +
+              "><span>" +
+              p[0] +
+              "<small>" +
+              p[1] +
+              "</small></span></label>"
+            );
+          }).join("") +
+          '<div class="sum" id="ksum"></div><p style="margin-top:12px"><a href="#carrinho" class="cx">Voltar ao carrinho</a></p>';
+        var c = document.getElementById("kcep");
+        c.value =
+          K.cep.length > 5 ? K.cep.slice(0, 5) + "-" + K.cep.slice(5) : K.cep;
+        kf();
+        ku();
+      }
+      document.addEventListener("input", function (e) {
+        if (e.target.id !== "kcep") return;
+        var d = e.target.value.replace(/\D/g, "").slice(0, 8);
+        K.cep = d;
+        K.fr = null;
+        e.target.value = d.length > 5 ? d.slice(0, 5) + "-" + d.slice(5) : d;
+        kf();
+        ku();
+      });
+      document.addEventListener("change", function (e) {
+        var t = e.target;
+        if (t.name === "fr") K.fr = +t.value;
+        else if (t.name === "pg") K.pg = t.value;
+        else return;
+        ku();
+      });
+      var F = [],
+        Q = [],
+        BC = [];
+      function qok(a) {
+        return Q.some(function (k) {
+          return a.indexOf(k) > -1;
+        });
+      }
+      function fl(a) {
+        return a.filter(function (x) {
+          return (
+            (!F.length ||
+              (x.mm &&
+                [].concat(x.mm).some(function (m) {
+                  return F.indexOf(m) > -1;
+                }))) &&
+            (!Q.length || (x.qt && qok(x.qt))) &&
+            (!BC.length || BC.indexOf(x.bc) > -1)
+          );
+        });
+      }
+      function gl(a) {
+        var r = fl(a);
+        return r.length
+          ? r.map(card).join("")
+          : '<p class="sub">Nenhum produto com esses filtros. Ajuste ou limpe os filtros para ver todos.</p>';
+      }
+      function fui() {
+        var cb = function (k, v, t) {
+          return (
+            '<label><input type="checkbox" data-k="' +
+            k +
+            '" value="' +
+            v +
+            '"> ' +
+            t +
+            "</label>"
+          );
+        };
+        var h =
+          "<h5>Bocal</h5>" +
+          ["Redondo", "Achatado", "Cônico"]
+            .map(function (b) {
+              return cb("bc", b, b);
+            })
+            .join("") +
+          "<h5>Espessura</h5>" +
+          [5, 6, 7, 8, 9]
+            .map(function (m) {
+              return cb("mm", m, m + " mm");
+            })
+            .join("") +
+          "<h5>Quantidade</h5>" +
+          [10, 50, 100, 1000]
+            .map(function (q) {
+              return cb("qt", q, q + " unidades");
+            })
+            .join("") +
+          '<button type="button" class="fx">Limpar filtros</button>';
+        [].forEach.call(document.querySelectorAll(".flt"), function (f) {
+          f.innerHTML = h;
+          [].forEach.call(f.querySelectorAll("input"), function (i) {
+            i[i.type === "checkbox" ? "onchange" : "oninput"] = function () {
+              var k = i.dataset.k;
+              var A = k === "mm" ? F : k === "qt" ? Q : BC,
+                m = k === "bc" ? i.value : +i.value,
+                j = A.indexOf(m);
+              if (j > -1) A.splice(j, 1);
+              else A.push(m);
+              route(1);
+            };
+          });
+          f.querySelector(".fx").onclick = function () {
+            F = [];
+            Q = [];
+            BC = [];
+            route(1);
+          };
+        });
+      }
+      fui();
+      var qi = document.getElementById("q");
+      function goq() {
+        if (qi.value.trim()) {
+          if (location.hash !== "#busca") location.hash = "busca";
+          else srch();
+        } else if (location.hash === "#busca") location.hash = "inicio";
+      }
+      qi.oninput = goq;
+      document.getElementById("sf").onsubmit = function (e) {
+        e.preventDefault();
+        goq();
+      };
+      addEventListener("hashchange", route);
+      route();
+      var mode = "in",
+        tabs = document.querySelectorAll(".tabs button");
+      [].forEach.call(tabs, function (b) {
+        b.onclick = function () {
+          mode = b.dataset.t;
+          [].forEach.call(tabs, function (t) {
+            t.classList.toggle("on", t === b);
+          });
+          document.getElementById("nm").hidden = mode === "in";
+          document.getElementById("sb").textContent =
+            mode === "in" ? "Entrar" : "Criar conta";
+          document.getElementById("msg").textContent = "";
+        };
+      });
+      function ld(k) {
+        try {
+          return JSON.parse(localStorage.getItem(k));
+        } catch (x) {
+          return null;
+        }
+      }
+      function sv(k, v) {
+        try {
+          localStorage.setItem(k, JSON.stringify(v));
+          return true;
+        } catch (x) {
+          return false;
+        }
+      }
+      function hs(s) {
+        return crypto.subtle
+          .digest("SHA-256", new TextEncoder().encode(s))
+          .then(function (b) {
+            return [].map
+              .call(new Uint8Array(b), function (x) {
+                return x.toString(16).padStart(2, "0");
+              })
+              .join("");
+          });
+      }
+      function paint() {
+        var u = ld("fz_session");
+        document.getElementById("acct").hidden = !u;
+        document.getElementById("auth").hidden = !!u;
+        if (u) {
+          document.getElementById("an").textContent = u.name.split(" ")[0];
+          document.getElementById("ae").textContent = u.email;
+        }
+      }
+      document.getElementById("out").onclick = function () {
+        try {
+          localStorage.removeItem("fz_session");
+        } catch (x) {}
+        paint();
+      };
+      document.getElementById("f").onsubmit = function (e) {
+        e.preventDefault();
+        var m = document.getElementById("msg"),
+          em = document.getElementById("e").value.trim().toLowerCase(),
+          pw = document.getElementById("p").value,
+          nm = document.getElementById("n").value.trim();
+        function err(t) {
+          m.style.color = "#c0392b";
+          m.textContent = t;
+        }
+        m.style.color = "";
+        m.textContent = "";
+        if (!em || !pw) return err("Preencha e-mail e senha para continuar.");
+        if (pw.length < 6)
+          return err("A senha precisa ter pelo menos 6 caracteres.");
+        if (mode === "up" && !nm) return err("Informe seu nome completo.");
+        if (!(window.crypto && crypto.subtle))
+          return err("Seu navegador não permite criar contas aqui.");
+        hs(pw).then(function (h) {
+          var us = ld("fz_users") || {};
+          if (mode === "up") {
+            if (us[em])
+              return err("Este e-mail já tem cadastro. Use a aba Entrar.");
+            us[em] = { name: nm, h: h };
+            if (!sv("fz_users", us))
+              return err("Não foi possível salvar o cadastro neste navegador.");
+          } else if (!us[em] || us[em].h !== h)
+            return err("E-mail ou senha incorretos.");
+          if (!sv("fz_session", { name: us[em].name, email: em }))
+            return err("Não foi possível iniciar a sessão neste navegador.");
+          document.getElementById("f").reset();
+          paint();
+        });
+      };
+      paint();
+    </script>
+  </body>
 </html>
